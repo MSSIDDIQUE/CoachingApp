@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteY="25dp">\
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:elevation="24dp"
+        android:padding="24dp"
+        app:cardBackgroundColor="#424367"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal|center">
+
+            <TextView
+                android:id="@+id/Branch"
+                android:layout_width="196dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Branch"
+                android:textSize="30dp"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.795"
+                app:layout_constraintStart_toEndOf="@+id/Teacher"
+                app:layout_constraintTop_toBottomOf="@+id/Subject"
+                app:layout_constraintVertical_bias="0.033" />
+
+            <TextView
+                android:id="@+id/Class"
+                android:layout_width="133dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="120dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="120dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Class"
+                android:textSize="25dp"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.883"
+                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/From"
+                android:layout_width="163dp"
+                android:layout_height="85dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:inputType="time"
+                android:padding="10dp"
+                android:text="6:30 PM"
+                android:textColor="@color/colorAccent"
+                android:textSize="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/To"
+                app:layout_constraintTop_toBottomOf="@+id/Branch" />
+
+            <TextView
+                android:id="@+id/Subject"
+                android:layout_width="133dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="128dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="128dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Subject"
+                android:textSize="25dp"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.985"
+                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintTop_toBottomOf="@+id/Class" />
+
+            <TextView
+                android:id="@+id/Teacher"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Teacher"
+                android:textSize="30dp"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Subject" />
+
+            <EditText
+                android:id="@+id/To"
+                android:layout_width="163dp"
+                android:layout_height="85dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="time"
+                android:padding="10dp"
+                android:text="5:30 PM"
+                android:textColor="@color/colorAccent"
+                android:textSize="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Teacher" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="32dp"
+                android:layout_height="31dp"
+                android:layout_marginBottom="112dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/To"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_access_time_black_24dp" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

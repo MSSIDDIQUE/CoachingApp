@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ToppersDescription"
+    tools:layout_editor_absoluteY="25dp"
+    android:clickable="true">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="false"
+        android:elevation="24dp"
+        android:padding="24dp"
+        app:cardBackgroundColor="@android:color/holo_green_light"
+        app:cardCornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="170dp"
+        tools:layout_conversion_absoluteWidth="374dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:gravity="center"
+            tools:layout_conversion_absoluteHeight="170dp"
+            tools:layout_conversion_absoluteWidth="374dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="0dp"
+                android:layout_height="315dp"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="TODO"
+                android:src="@mipmap/ic_launcher1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Marksheet"
+                tools:layout_conversion_absoluteHeight="358dp"
+                tools:layout_conversion_absoluteWidth="358dp" />
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="136dp"
+                android:layout_height="160dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="TODO"
+                android:src="@mipmap/ic_launcher1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.038"
+                tools:layout_conversion_absoluteHeight="154dp"
+                tools:layout_conversion_absoluteWidth="148dp" />
+
+            <TextView
+                android:id="@+id/RegisterName"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Name   :"
+                android:textSize="20dp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@id/RollNo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.053"
+                app:layout_constraintStart_toEndOf="@+id/image1"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_absoluteHeight="40dp"
+                tools:layout_conversion_absoluteWidth="75dp" />
+
+            <TextView
+                android:id="@+id/RollNo"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="160dp"
+                android:layout_marginStart="160dp"
+                android:gravity="left|center"
+                android:text="Roll No :"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@id/Stream"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/RegisterName"
+                tools:layout_conversion_absoluteHeight="40dp"
+                tools:layout_conversion_absoluteWidth="76dp" />
+
+            <TextView
+                android:id="@+id/Stream"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="160dp"
+                android:layout_marginStart="160dp"
+                android:layout_marginTop="96dp"
+                android:gravity="left|center"
+                android:text="Stream :"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_absoluteHeight="40dp"
+                tools:layout_conversion_absoluteWidth="76dp" />
+
+            <TextView
+                android:id="@+id/School"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="160dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="160dp"
+                android:layout_marginTop="8dp"
+                android:gravity="left|center_vertical|center"
+                android:text="Percentage :"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Stream"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_conversion_absoluteHeight="40dp"
+                tools:layout_conversion_absoluteWidth="72dp" />
+
+            <TextView
+                android:id="@+id/NameField"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="84dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginTop="16dp"
+                android:gravity="left|center_vertical"
+                android:text="Saquib Siddique"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/RegisterName"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_absoluteHeight="40dp"
+                tools:layout_conversion_absoluteWidth="132dp" />
+
+            <TextView
+                android:id="@+id/RollNoField"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="84dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginTop="4dp"
+                android:gravity="left|center_vertical"
+                android:text="9791425"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="@+id/RollNo"
+                app:layout_constraintTop_toBottomOf="@id/NameField"
+                tools:layout_conversion_absoluteHeight="40dp"
+                tools:layout_conversion_absoluteWidth="65dp" />
+
+            <TextView
+                android:id="@+id/StreamField"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="84dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginTop="4dp"
+                android:gravity="left|center_vertical"
+                android:text="Science"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toTopOf="@id/School"
+                app:layout_constraintStart_toStartOf="@+id/Stream"
+                app:layout_constraintTop_toBottomOf="@+id/RollNoField"
+                tools:layout_conversion_absoluteHeight="40dp"
+                tools:layout_conversion_absoluteWidth="65dp" />
+
+            <TextView
+                android:id="@+id/SchoolField"
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="116dp"
+                android:layout_marginStart="116dp"
+                android:layout_marginTop="8dp"
+                android:gravity="left|center_vertical"
+                android:lines="2"
+                android:text="85%"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toTopOf="@+id/Marksheet"
+                app:layout_constraintStart_toStartOf="@+id/School"
+                app:layout_constraintTop_toBottomOf="@id/StreamField"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_conversion_absoluteHeight="40dp"
+                tools:layout_conversion_absoluteWidth="138dp" />
+
+            <TextView
+                android:id="@+id/Marksheet"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:gravity="left|center"
+                android:text="Marksheet"
+                android:textSize="30dp"
+                app:layout_constraintBottom_toTopOf="@id/image3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.562"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/School"
+                app:layout_constraintVertical_bias="0.071" />
+
+            <ProgressBar
+                android:id="@+id/progressBarData"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

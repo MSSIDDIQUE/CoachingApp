@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home"/>
+        <item
+            android:id="@+id/nav_toppers"
+            android:icon="@mipmap/ic_school_black_24dp"
+            android:title="Our Toppers" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Gallery" />
+        <item
+            android:id="@+id/nav_studymaterial"
+            android:icon="@mipmap/ic_book_black_24dp"
+            android:title="Study Material" />
+        <item
+            android:id="@+id/nav_register"
+            android:icon="@mipmap/ic_assignment_ind_black_24dp"
+            android:title="Register/Login" />
+        <item
+            android:id="@+id/nav_feepayment"
+            android:icon="@mipmap/ic_payment_black_24dp"
+            android:title="Fee Payment" />
+        <item
+            android:id="@+id/nav_contactus"
+            android:icon="@mipmap/ic_contact_mail_black_24dp"
+            android:title="Contact Us" />
+        <item
+            android:id="@+id/nav_find_us"
+            android:icon="@mipmap/ic_place_black_24dp"
+            android:title="Find Us" />
+    </group>
+
+</menu>

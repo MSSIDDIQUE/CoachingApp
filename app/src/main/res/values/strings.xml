@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Study Solutions</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="todo">TODO</string>
+    <string name="title_activity_toppers">ToppersActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_gallery">GalleryActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_study_material">StudyMaterialActivity</string>
+    <string name="textview">TextView</string>
+    <string name="textview0">TextView</string>
+    <string name="heading_section">Heading Section</string>
+    <string name="this_is_gallery_view">This is Gallery View</string>
+    <string name="Home">Home</string>
+    <string name="Toppers">Our Toppers</string>
+    <string name="Gallery">Gallery</string>
+    <string name="StudyMaterial">Study Material</string>
+    <string name="RegisterLogin">Login</string>
+    <string name="FeePayment">Fee Payment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_our_toppers">OurToppersActivity</string>
+    <string-array name="Class">
+        <item>Class: Xth</item>
+        <item>Class: XIIth</item>
+    </string-array>
+
+
+</resources>
