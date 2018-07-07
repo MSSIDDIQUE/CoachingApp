@@ -32,7 +32,7 @@ public class GalleryFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.time_table_layout, container, false);
+        View view = inflater.inflate(R.layout.time_item_layout, container, false);
         return view;
     }
 }

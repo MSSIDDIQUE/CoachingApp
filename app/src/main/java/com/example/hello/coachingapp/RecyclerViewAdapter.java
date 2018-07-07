@@ -24,6 +24,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     ArrayList <ToppersData> listArray;
     private Context context;
     private OnItemClickListener listener;
+    private String ViewType;
 
     public interface OnItemClickListener{
         void onItemClick(int position);
@@ -34,10 +35,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.listener = listener;
     }
 
-    public RecyclerViewAdapter(ArrayList List,Context context){
+    public RecyclerViewAdapter(Context context, String type){
+
+        this.context = context;
+        this.ViewType = type;
+    }
+
+    public RecyclerViewAdapter(ArrayList List,Context context, String type){
 
         this.listArray = List;
         this.context = context;
+        this.ViewType = type;
     }
     @Override
     public  MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

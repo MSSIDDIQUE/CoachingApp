@@ -1,12 +1,21 @@
 package com.example.hello.coachingapp;
 
 public class Users {
-    private String Email,Name,Password;
+    private String Email,Name,Password,Type;
 
-    public Users(String email, String name, String password) {
+    public Users(String email, String name, String password, String type) {
+        Type = type;
         Email = email;
         Name = name;
         Password = password;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
     }
 
     public String getEmail() {

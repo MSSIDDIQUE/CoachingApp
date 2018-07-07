@@ -7,7 +7,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +19,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 public class SignUpFragment extends android.support.v4.app.Fragment {
@@ -32,9 +45,13 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
     private EditText Email;
     private EditText Password;
     private EditText ContactNo;
+    private EditText TeacherCode;
+    private TextView Message;
     private Button Register;
     private FirebaseAuth mAuth;
     private View view;
+    private RadioButton Teacher;
+    private RadioButton User;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,11 +63,29 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
         Password = view.findViewById(R.id.Password);
         ContactNo = view.findViewById(R.id.Phone);
         Register = view.findViewById(R.id.RegisterButton);
+        Teacher = view.findViewById(R.id.Teacher);
+        User = view.findViewById(R.id.User);
+        TeacherCode = (EditText) view.findViewById(R.id.TeachersCode);
+        Message = view.findViewById(R.id.Message);
         mAuth = FirebaseAuth.getInstance();
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 RegisterUser();
+            }
+        });
+        Teacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Message.setVisibility(View.VISIBLE);
+                TeacherCode.setVisibility(View.VISIBLE);
+            }
+        });
+        User.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Message.setVisibility(View.INVISIBLE);
+                TeacherCode.setVisibility(View.INVISIBLE);
             }
         });
         return view;
@@ -79,15 +114,13 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
         final String password = Password.getText().toString();
         final String name = Name.getText().toString();
         final String contactno = ContactNo.getText().toString();
+        final String teacherscode = TeacherCode.getText().toString();
 
         if(!isConnected())
         {
-            if(!isConnected())
-            {
-               android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-               fm.beginTransaction().replace(R.id.screen_area,new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network")).commit();
-               return;
-            }
+            android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.screen_area,new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network")).commit();
+            return;
         }
 
         if(name.isEmpty())
@@ -138,30 +171,98 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
             ContactNo.requestFocus();
             return;
         }
+
+        if((Teacher.isChecked()==false)&&(User.isChecked()==false))
+        {
+            Toast.makeText(getContext(),"Please Select the user Type", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(Teacher.isChecked()&&teacherscode.isEmpty())
+        {
+            TeacherCode.setError("Please Enter the Teacher Code");
+            return;
+        }
         progressBar.setVisibility(view.VISIBLE);
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("Users");
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("Users");
-                usersRef.child(contactno).setValue( new Users(email,name, password));
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                prefs.edit().putBoolean("Islogin", true).commit();
-                progressBar.setVisibility(view.GONE);
+            public void onComplete(@NonNull final Task<AuthResult> task) {
+                if(User.isChecked())
+                {
+                    usersRef.child(contactno).setValue( new Users(email,name, password,"user"));
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    prefs.edit().putBoolean("Islogin", true).commit();
+                    UserType.edit().putBoolean("Teacher",false).commit();
+                    progressBar.setVisibility(view.GONE);
+                    if(task.isSuccessful())
+                    {
+                        Toast.makeText(getContext(),"User Registered Successfully", Toast.LENGTH_SHORT).show();
+                        android.support.v4.app.FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
+                        fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
+                    }
+                    else
+                    {
+                        if(task.getException() instanceof FirebaseAuthUserCollisionException)
+                        {
+                            Toast.makeText(getContext(),"Contact number is already registered", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(getContext(),task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
 
-                if(task.isSuccessful()) {
-                    Toast.makeText(getContext(),"User Registered Successfully", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
-                else {
+                if(Teacher.isChecked())
+                {
+                    usersRef.child("TeachersCode").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.getValue().toString().matches(teacherscode))
+                            {
+                                usersRef.child(contactno).setValue( new Users(email,name, password,"teacher"));
+                                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                                SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
+                                prefs.edit().putBoolean("Islogin", true).commit();
+                                UserType.edit().putBoolean("Teacher", true).commit();
+                                progressBar.setVisibility(view.GONE);
+                                if(task.isSuccessful())
+                                {
+                                    Toast.makeText(getContext(),"Teacher Registered Successfully", Toast.LENGTH_SHORT).show();
+                                    android.support.v4.app.FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
+                                    fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
+                                }
+                                else
+                                {
+                                    if(task.getException() instanceof FirebaseAuthUserCollisionException)
+                                    {
+                                        Toast.makeText(getContext(),"Contact number is already registered", Toast.LENGTH_SHORT).show();
 
-                    if(task.getException() instanceof FirebaseAuthUserCollisionException){
-                        Toast.makeText(getContext(),"contact number is already registered", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(getContext(),task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(getContext(),task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                TeacherCode.setError("Please Enter a valid Teachers Code");
+                                progressBar.setVisibility(view.GONE);
+                                return;
+                            }
 
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
             }
         });

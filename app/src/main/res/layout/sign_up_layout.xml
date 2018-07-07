@@ -11,6 +11,18 @@
     <!-- TODO: Update blank fragment layout -->
 
     <EditText
+        android:id="@+id/TeachersCode"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="Enter the Teacher's Code"
+        android:inputType="phone"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Message" />
+
+    <EditText
         android:id="@+id/RegisterName"
         android:layout_width="300dp"
         android:layout_height="40dp"
@@ -27,7 +39,6 @@
         android:id="@+id/Email"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -40,7 +51,6 @@
         android:id="@+id/Password"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -53,7 +63,6 @@
         android:id="@+id/Phone"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Contact Number"
         android:inputType="phone"
@@ -84,20 +93,62 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Phone"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintTop_toBottomOf="@+id/TeachersCode"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/RegisterButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Message"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Enter Teachers Code Provided by the Admin"
+        android:textColor="@android:color/holo_blue_dark"
+        android:visibility="invisible"
+        app:fontFamily="@font/salsa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RadioGroup" />
+
+    <RadioGroup
+        android:id="@+id/RadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Phone">
+
+        <RadioButton
+            android:id="@+id/Teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Teacher"
+            app:fontFamily="@font/salsa" />
+
+        <RadioButton
+            android:id="@+id/User"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="User"
+            app:fontFamily="@font/salsa" />
+    </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>

@@ -69,12 +69,12 @@ public class ToppersFragment extends android.support.v4.app.Fragment{
         ValueEventListener valueEventListener = dbr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String Key;
+
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     ToppersData d = ds.getValue(ToppersData.class);
                     data.add(d);
                 }
-                adapter=new RecyclerViewAdapter(data,getActivity());
+                adapter=new RecyclerViewAdapter(data,getActivity(), "ToppersView");
                 adapter.notifyDataSetChanged();
                 rv.setAdapter(adapter);
                 mProgressCircle.setVisibility(view.GONE);
