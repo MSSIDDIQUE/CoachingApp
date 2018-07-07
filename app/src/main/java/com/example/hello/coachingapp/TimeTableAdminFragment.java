@@ -20,7 +20,7 @@ import android.view.ViewGroup;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_time_table_admin, container, false);
+        return inflater.inflate(R.layout.time_table_admin, container, false);
     }
 
 }
