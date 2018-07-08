@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ToggleButton
+        android:id="@+id/Sunday"
+        style="@style/toggleButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/ic_toggle_bg"
+        android:fontFamily="@font/salsa"
+        android:textColor="@color/cardview_light_background"
+        android:textOff="S"
+        android:textOn="S"
+        android:textSize="25dp" />
+
+    <ToggleButton
+        android:id="@+id/Monday"
+        style="@style/toggleButton"
+        android:layout_width="52dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/ic_toggle_bg"
+        android:fontFamily="@font/salsa"
+        android:textColor="@color/cardview_light_background"
+        android:textOff="M"
+        android:textOn="M"
+        android:textSize="25dp" />
+
+    <ToggleButton
+        android:id="@+id/Tuesday"
+        style="@style/toggleButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/ic_toggle_bg"
+        android:fontFamily="@font/salsa"
+        android:textColor="@color/cardview_light_background"
+        android:textOff="T"
+        android:textOn="T"
+        android:textSize="25dp" />
+
+    <ToggleButton
+        android:id="@+id/Wednesday"
+        style="@style/toggleButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/ic_toggle_bg"
+        android:fontFamily="@font/salsa"
+        android:textColor="@color/cardview_light_background"
+        android:textOff="W"
+        android:textOn="W"
+        android:textSize="25dp" />
+
+    <ToggleButton
+        android:id="@+id/Thursday"
+        style="@style/toggleButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/ic_toggle_bg"
+        android:fontFamily="@font/salsa"
+        android:textColor="@color/cardview_light_background"
+        android:textOff="T"
+        android:textOn="T"
+        android:textSize="25dp" />
+
+    <ToggleButton
+        android:id="@+id/Friday"
+        style="@style/toggleButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/ic_toggle_bg"
+        android:fontFamily="@font/salsa"
+        android:textColor="@color/cardview_light_background"
+        android:textOff="F"
+        android:textOn="F"
+        android:textSize="25dp" />
+
+    <ToggleButton
+        android:id="@+id/Saturday"
+        style="@style/toggleButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/ic_toggle_bg"
+        android:fontFamily="@font/salsa"
+        android:textColor="@color/cardview_light_background"
+        android:textOff="S"
+        android:textOn="S"
+        android:textSize="25dp" />
+</LinearLayout>
