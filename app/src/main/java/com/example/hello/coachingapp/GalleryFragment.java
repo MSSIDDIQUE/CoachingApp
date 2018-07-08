@@ -2,10 +2,13 @@ package com.example.hello.coachingapp;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,6 +36,13 @@ public class GalleryFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.time_item_layout, container, false);
+        SharedPreferences UserType =  PreferenceManager.getDefaultSharedPreferences(getContext());
+        boolean isTeacher = UserType.getBoolean("Teacher",false);
+        if(isTeacher)
+        {
+            CardView cardView = (CardView)view.findViewById(R.id.card1);
+            cardView.setVisibility(View.GONE);
+        }
         return view;
     }
 }

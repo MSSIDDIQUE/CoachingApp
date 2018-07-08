@@ -17,6 +17,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,13 +40,14 @@ public class ToppersTab extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        boolean Islogin = prefs.getBoolean("Islogin", false);
+        boolean Islogin = prefs.getBoolean("Islogin",false);
         if(!Islogin)
         {
             Toast.makeText(getContext(),"Please make sure that you have Successfully Logged in to your Acccount", Toast.LENGTH_LONG);
             view = inflater.inflate(R.layout.sorry_layout,container,false);
             TextView text = (TextView)view.findViewById(R.id.textView);
             text.setText("Please make sure that you have Successfully Logged in to your Acccount");
+            return view;
         }
         view=inflater.inflate(R.layout.toppers_tab_layout,container,false);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);

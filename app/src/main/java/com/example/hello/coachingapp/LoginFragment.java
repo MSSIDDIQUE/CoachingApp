@@ -1,6 +1,7 @@
 package com.example.hello.coachingapp;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -9,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginFragment extends android.support.v4.app.Fragment {
     private ProgressBar progressBar;
@@ -117,13 +125,36 @@ public class LoginFragment extends android.support.v4.app.Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 progressBar.setVisibility(view.GONE);
+                DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("Users");
 
                 if(task.isSuccessful()) {
                     Toast.makeText(getContext(),"You have Signed in Successfully",Toast.LENGTH_SHORT).show();
                     FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
                     fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
-                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    prefs.edit().putBoolean("Islogin", true).commit();
+                    SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(getContext());
+                    prefs.edit().putBoolean("Islogin", true).apply();
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String email = user.getEmail();
+                    usersRef.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
+                            {
+                                Users u = dataSnapshot1.getValue(Users.class);
+                                if(u.getType()=="teacher")
+                                {
+                                    SharedPreferences UserType =  PreferenceManager.getDefaultSharedPreferences(getContext());
+                                    UserType.edit().putBoolean("Teacher", true).apply();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
 
                 else {

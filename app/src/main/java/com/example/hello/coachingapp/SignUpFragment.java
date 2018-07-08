@@ -2,6 +2,7 @@ package com.example.hello.coachingapp;
 
 import android.app.FragmentManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -186,12 +187,12 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
         progressBar.setVisibility(view.VISIBLE);
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("Users");
+            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference();
             @Override
             public void onComplete(@NonNull final Task<AuthResult> task) {
                 if(User.isChecked())
                 {
-                    usersRef.child(contactno).setValue( new Users(email,name, password,"user"));
+                    usersRef.child("Users").child(contactno).setValue( new Users(email,name, password,"user"));
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                     SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
                     prefs.edit().putBoolean("Islogin", true).commit();
@@ -207,7 +208,7 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
                     {
                         if(task.getException() instanceof FirebaseAuthUserCollisionException)
                         {
-                            Toast.makeText(getContext(),"Contact number is already registered", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"Contact number or Email Address is already registered", Toast.LENGTH_LONG).show();
                         }
                         else
                         {
@@ -224,8 +225,8 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if(dataSnapshot.getValue().toString().matches(teacherscode))
                             {
-                                usersRef.child(contactno).setValue( new Users(email,name, password,"teacher"));
-                                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                                usersRef.child("Users").child(contactno).setValue( new Users(email,name, password,"teacher"));
+                                SharedPreferences prefs =PreferenceManager.getDefaultSharedPreferences(getContext());
                                 SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
                                 prefs.edit().putBoolean("Islogin", true).commit();
                                 UserType.edit().putBoolean("Teacher", true).commit();

@@ -10,6 +10,8 @@ public class Users {
         Password = password;
     }
 
+    public Users() {}
+
     public String getType() {
         return Type;
     }
