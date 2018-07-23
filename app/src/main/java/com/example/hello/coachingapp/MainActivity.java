@@ -1,6 +1,7 @@
 package com.example.hello.coachingapp;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -20,6 +22,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -34,6 +37,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -68,12 +76,13 @@ public class MainActivity extends AppCompatActivity
         if(Islogin)
         {
             setTitle(R.string.Home);
-            f = new HomeFragment();
+            f = new TimeItemFragment();
         }
         else
         {
             setTitle("Register/Login");
             f = new RegisterFragment();
+
         }
         fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -125,6 +134,7 @@ public class MainActivity extends AppCompatActivity
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("Islogin", false).apply();
+            prefs.edit().putBoolean("Teacher",false).commit();
         }
 
         return super.onOptionsItemSelected(item);
@@ -144,7 +154,7 @@ public class MainActivity extends AppCompatActivity
             f = new ToppersTab();
 
         } else if (id == R.id.nav_gallery) {
-            f= new GalleryFragment();
+            f= new TimeItemFragment();
 
         } else if (id == R.id.nav_studymaterial) {
             setTitle(R.string.StudyMaterial);
@@ -171,5 +181,18 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void onButtonClicked(View v){
+        String txtid=null;
+        if(v.getId()==R.id.ChangeFrom)
+        {
+            txtid="From";
+        }
+        else
+        {
+            txtid="To";
+        }
+        DialogFragment newFragment = new TimePickerFragment().SetTextId(txtid);
+        newFragment.show(getFragmentManager(),"TimePicker");
     }
 }

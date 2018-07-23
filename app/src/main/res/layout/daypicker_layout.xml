@@ -8,7 +8,7 @@
     <ToggleButton
         android:id="@+id/Sunday"
         style="@style/toggleButton"
-        android:layout_width="50dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
@@ -22,7 +22,7 @@
     <ToggleButton
         android:id="@+id/Monday"
         style="@style/toggleButton"
-        android:layout_width="52dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
@@ -36,7 +36,7 @@
     <ToggleButton
         android:id="@+id/Tuesday"
         style="@style/toggleButton"
-        android:layout_width="50dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
@@ -50,7 +50,7 @@
     <ToggleButton
         android:id="@+id/Wednesday"
         style="@style/toggleButton"
-        android:layout_width="50dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
@@ -64,7 +64,7 @@
     <ToggleButton
         android:id="@+id/Thursday"
         style="@style/toggleButton"
-        android:layout_width="50dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
@@ -78,7 +78,7 @@
     <ToggleButton
         android:id="@+id/Friday"
         style="@style/toggleButton"
-        android:layout_width="50dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
@@ -92,7 +92,7 @@
     <ToggleButton
         android:id="@+id/Saturday"
         style="@style/toggleButton"
-        android:layout_width="50dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"

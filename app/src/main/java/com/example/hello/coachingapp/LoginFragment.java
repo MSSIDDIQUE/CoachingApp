@@ -129,32 +129,36 @@ public class LoginFragment extends android.support.v4.app.Fragment {
 
                 if(task.isSuccessful()) {
                     Toast.makeText(getContext(),"You have Signed in Successfully",Toast.LENGTH_SHORT).show();
-                    FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
-                    fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
                     SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(getContext());
                     prefs.edit().putBoolean("Islogin", true).apply();
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     String email = user.getEmail();
+                    final SharedPreferences UserType =  PreferenceManager.getDefaultSharedPreferences(getContext());
                     usersRef.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                             for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
                             {
                                 Users u = dataSnapshot1.getValue(Users.class);
-                                if(u.getType()=="teacher")
+                                if(u.getType().equals("teacher"))
                                 {
-                                    SharedPreferences UserType =  PreferenceManager.getDefaultSharedPreferences(getContext());
-                                    UserType.edit().putBoolean("Teacher", true).apply();
+                                    UserType.edit().putBoolean("Teacher",true).commit();
+                                    Log.e("Hey","The Retrieved Value of is Teacher is "+UserType.getBoolean("Teacher",false));
+                                }
+                                else
+                                {
+                                    UserType.edit().putBoolean("Teacher",false).commit();
                                 }
                             }
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-
                         }
                     });
+                    getActivity().setTitle(R.string.Home);
+                    FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
+                    fm.beginTransaction().replace(R.id.screen_area,new TimeItemFragment()).commit();
                 }
 
                 else {
@@ -163,8 +167,4 @@ public class LoginFragment extends android.support.v4.app.Fragment {
             }
         });
     }
-
-
-
-
 }

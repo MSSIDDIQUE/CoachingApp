@@ -234,6 +234,7 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
                                 if(task.isSuccessful())
                                 {
                                     Toast.makeText(getContext(),"Teacher Registered Successfully", Toast.LENGTH_SHORT).show();
+                                    getActivity().setTitle(R.string.Home);
                                     android.support.v4.app.FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
                                     fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
                                 }
