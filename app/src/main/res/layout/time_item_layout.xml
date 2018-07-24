@@ -9,7 +9,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/card1"
         android:layout_width="0dp"
-        android:layout_height="296dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginLeft="5dp"
@@ -34,47 +34,26 @@
             android:gravity="center_vertical|center_horizontal|center">
 
             <TextView
-                android:id="@+id/Branch"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="Faiyyaz Ganj"
-                android:textSize="25dp"
-                app:fontFamily="@font/salsa"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Subject" />
-
-            <TextView
                 android:id="@+id/Class"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="35dp"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="Class"
+                android:text="XIIth"
+                android:textColor="@color/colorAccent"
                 android:textSize="25dp"
                 app:fontFamily="@font/salsa"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/To"
                 android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="44dp"
-                android:layout_marginRight="44dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="50dp"
                 android:editable="false"
                 android:ems="10"
                 android:gravity="right|center_vertical"
@@ -83,52 +62,50 @@
                 android:text="6:30 PM"
                 android:textColor="@color/colorAccent"
                 android:textSize="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/DayPicker"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toStartOf="@+id/ChangeTo"
+                app:layout_constraintTop_toBottomOf="@+id/DayPicker" />
 
             <TextView
                 android:id="@+id/Subject"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="36dp"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="Subject"
+                android:text="Chemistry"
+                android:textColor="@color/colorAccent"
                 android:textSize="25dp"
                 app:fontFamily="@font/salsa"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Class" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/Teacher"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="30dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="Teacher"
-                android:textSize="25dp"
+                android:text="Saquib Sir"
+                android:textSize="20dp"
                 app:fontFamily="@font/salsa"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.555"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Branch" />
+                app:layout_constraintTop_toBottomOf="@+id/Subject" />
 
             <TextView
                 android:id="@+id/From"
                 android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="16dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:editable="false"
                 android:ems="10"
                 android:gravity="right|center_vertical"
@@ -137,28 +114,25 @@
                 android:text="5:30 PM"
                 android:textColor="@color/colorAccent"
                 android:textSize="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/DayPicker"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/DayPicker" />
 
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:visibility="visible"
                 app:srcCompat="@drawable/ic_access_time_black_24dp"
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageView
                 android:id="@+id/ChangeFrom"
                 android:layout_width="35dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:visibility="invisible"
+                android:layout_height="50dp"
                 android:onClick="onButtonClicked"
+                android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/From"
                 app:layout_constraintTop_toBottomOf="@+id/DayPicker"
                 app:srcCompat="@drawable/ic_create_black_24dp"
@@ -167,11 +141,12 @@
             <ImageView
                 android:id="@+id/ChangeTo"
                 android:layout_width="35dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:visibility="invisible"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:onClick="onButtonClicked"
-                app:layout_constraintStart_toEndOf="@+id/To"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/DayPicker"
                 app:srcCompat="@drawable/ic_create_black_24dp"
                 tools:ignore="VectorDrawableCompat" />
@@ -188,15 +163,18 @@
                 android:padding="24dp"
                 app:cardBackgroundColor="#424367"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Teacher">
+                app:layout_constraintTop_toBottomOf="@id/msg"
+                tools:layout_editor_absoluteY="195dp">
 
                 <LinearLayout
                     android:id="@+id/daypicker_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/linearLayout"
-                    android:layout_centerHorizontal="true">
+                    android:layout_centerHorizontal="true"
+                    android:clickable="false">
 
                     <include
                         android:id="@+id/daypicker"
@@ -205,6 +183,36 @@
                         android:layout_height="wrap_content"></include>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/Edit"
+                android:layout_width="93dp"
+                android:layout_height="39dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="Edit"
+                android:textSize="15dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/msg"
+                android:layout_width="358dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="TextView"
+                android:textColor="@color/colorAccent"
+                android:visibility="invisible"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Teacher"
+                tools:layout_editor_absoluteY="175dp" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>

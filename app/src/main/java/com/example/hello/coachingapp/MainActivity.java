@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity
             f = new ToppersTab();
 
         } else if (id == R.id.nav_gallery) {
-            f= new TimeItemFragment();
+            f= new TimeTableTab();
 
         } else if (id == R.id.nav_studymaterial) {
             setTitle(R.string.StudyMaterial);

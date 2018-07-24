@@ -1,39 +1,30 @@
 package com.example.hello.coachingapp;
 
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ToppersFragment extends android.support.v4.app.Fragment{
     DatabaseReference dbr;
     RecyclerView rv;
-    RecyclerViewAdapter adapter;
+    ToppersAdapter adapter;
     View view;
     private Context context;
     private ArrayList<ToppersData> data;
@@ -74,7 +65,7 @@ public class ToppersFragment extends android.support.v4.app.Fragment{
                     ToppersData d = ds.getValue(ToppersData.class);
                     data.add(d);
                 }
-                adapter=new RecyclerViewAdapter(data,getActivity(), "ToppersView");
+                adapter=new ToppersAdapter(data,getActivity());
                 adapter.notifyDataSetChanged();
                 rv.setAdapter(adapter);
                 mProgressCircle.setVisibility(view.GONE);

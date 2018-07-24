@@ -1,12 +1,8 @@
 package com.example.hello.coachingapp;
 
-import android.app.Activity;
-import android.content.ClipData;
 import android.content.Context;
-import android.os.health.SystemHealthManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,12 +15,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class ToppersAdapter extends RecyclerView.Adapter<ToppersAdapter.MyViewHolder> {
 
-    ArrayList <ToppersData> listArray;
+    ArrayList <ToppersData> ListArray;
     private Context context;
     private OnItemClickListener listener;
-    private String ViewType;
 
     public interface OnItemClickListener{
         void onItemClick(int position);
@@ -35,27 +30,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.listener = listener;
     }
 
-    public RecyclerViewAdapter(Context context, String type){
+    public ToppersAdapter(Context context){
 
         this.context = context;
-        this.ViewType = type;
     }
 
-    public RecyclerViewAdapter(ArrayList List,Context context, String type){
+    public ToppersAdapter(ArrayList List, Context context){
 
-        this.listArray = List;
+        this.ListArray = List;
         this.context = context;
-        this.ViewType = type;
     }
     @Override
     public  MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_view, parent, false);
-        return new MyViewHolder(view, context, listArray);
+        return new MyViewHolder(view, context, ListArray);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        ToppersData data = listArray.get(position);
+        ToppersData data = ListArray.get(position);
         holder.name.setText(data.getName());
         holder.percentage.setText(data.getPercentage());
         holder.session.setText(data.getSession());
@@ -66,7 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return listArray.size();
+        return ListArray.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
