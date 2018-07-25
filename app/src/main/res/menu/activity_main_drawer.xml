@@ -14,8 +14,8 @@
             android:title="Our Toppers" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:icon="@drawable/ic_access_time_black_24dp"
+            android:title="Time Table" />
         <item
             android:id="@+id/nav_studymaterial"
             android:icon="@mipmap/ic_book_black_24dp"
