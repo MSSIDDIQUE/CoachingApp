@@ -20,7 +20,9 @@
     <ScrollView
         android:id="@+id/scrolView_account"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
 
         <RelativeLayout
@@ -32,79 +34,45 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="200dp"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="100dp"
-                    android:orientation="vertical">
+                <com.alespero.expandablecardview.ExpandableCardView
+                    android:id="@+id/profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:minWidth="60dp"
+                    android:textAlignment="center"
+                    app:animationDuration="300"
+                    app:expandOnClick="true"
+                    app:icon="@mipmap/ic_contact_mail_black_24dp"
+                    app:inner_view="@layout/profile_details_layout"
+                    app:startExpanded="false"
+                    app:title="Edit Profile Details" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="profile Details"
-                        android:textStyle="bold" />
+                <com.alespero.expandablecardview.ExpandableCardView
+                    android:id="@+id/ChangeTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    app:animationDuration="300"
+                    app:expandOnClick="true"
+                    app:icon="@drawable/ic_access_time_black_24dp"
+                    app:inner_view="@layout/time_item_layout"
+                    app:startExpanded="false"
+                    app:title="Update Class Timings" />
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimary">
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Please Enter User Name"
-                            android:imeOptions="actionNext"
-                            android:textColorHint="@color/colorPrimary" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimary">
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Email Address"
-                            android:imeOptions="actionNext"
-                            android:inputType="textEmailAddress"
-                            android:textColorHint="@color/colorPrimary" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimary">
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="password"
-                            android:imeOptions="actionNext"
-                            android:inputType="textPassword"
-                            android:textColorHint="@color/colorPrimary" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-
-                </LinearLayout>
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true">
+                android:layout_alignParentTop="true">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageview_account_profile"

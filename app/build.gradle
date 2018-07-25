@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.hello.coachingapp"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -36,6 +36,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:2.1.0'
     implementation 'com.google.firebase:firebase-auth:16.0.1'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'com.alespero:expandable-cardview:0.8'
 }
 
 
