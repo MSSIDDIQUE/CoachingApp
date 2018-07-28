@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.net.Uri;
@@ -17,10 +18,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
@@ -33,6 +36,7 @@ public class ToppersTab extends android.support.v4.app.Fragment {
     public TabLayout tabLayout;
     public ViewPager viewPager;
     public Toolbar toolbar;
+    public FloatingActionButton addTopper;
     View view;
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -49,7 +53,20 @@ public class ToppersTab extends android.support.v4.app.Fragment {
             text.setText("Please make sure that you have Successfully Logged in to your Acccount");
             return view;
         }
-        view=inflater.inflate(R.layout.toppers_tab_layout,container,false);
+        else
+        {
+            view=inflater.inflate(R.layout.toppers_tab_layout,container,false);
+            addTopper = view.findViewById(R.id.floatingActionButton4);
+            addTopper.setVisibility(View.VISIBLE);
+            addTopper.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
+                    fm.beginTransaction().add(R.id.screen_area, new AddTopperFragment())
+                            .addToBackStack("MyBackStack").commit();
+                }
+            });
+        }
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.addTab(tabLayout.newTab().setText("Class: Xth"));
         tabLayout.addTab(tabLayout.newTab().setText("Class: XIIth"));

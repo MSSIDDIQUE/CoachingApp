@@ -22,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
 
 
         <RelativeLayout
@@ -35,7 +36,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="200dp"
                 android:orientation="vertical">
 
@@ -47,6 +51,7 @@
                     android:minWidth="60dp"
                     android:textAlignment="center"
                     app:animationDuration="300"
+                    android:textColor="@color/colorAccent"
                     app:expandOnClick="true"
                     app:icon="@mipmap/ic_contact_mail_black_24dp"
                     app:inner_view="@layout/profile_details_layout"
@@ -59,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     app:animationDuration="300"
+                    android:textColor="@color/colorAccent"
                     app:expandOnClick="true"
                     app:icon="@drawable/ic_access_time_black_24dp"
                     app:inner_view="@layout/time_item_layout"
@@ -70,9 +76,10 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true">
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                android:layout_alignParentLeft="true">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageview_account_profile"
@@ -90,7 +97,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_marginEnd="98dp"
+                    android:layout_marginRight="98dp"
                     android:src="@drawable/ic_create_black_24dp" />
 
             </RelativeLayout>
