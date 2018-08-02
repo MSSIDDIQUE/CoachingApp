@@ -1,6 +1,8 @@
 package com.example.hello.coachingapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -53,6 +55,10 @@ public class ToppersAdapter extends RecyclerView.Adapter<ToppersAdapter.MyViewHo
         holder.percentage.setText(data.getPercentage());
         holder.session.setText(data.getSession());
         holder.stream.setText(data.getStream());
+        if(data.getStream().toString().equals(""))
+        {
+            holder.stream.setVisibility(View.INVISIBLE);
+        }
         Picasso.get().load(data.getImgurl()).fit().centerCrop().into(holder.img);
     }
 

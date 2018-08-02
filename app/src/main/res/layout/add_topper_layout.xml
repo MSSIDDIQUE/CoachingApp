@@ -5,7 +5,7 @@
     android:id="@+id/activity_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="#2C3E50"
     android:orientation="vertical">
 
     <ScrollView
@@ -40,6 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:gravity="center"
                     android:text="Please fill all the Details"
                     android:textSize="20dp"
                     android:textStyle="bold"
@@ -51,54 +52,198 @@
                     android:textColorHint="@color/colorPrimary">
 
                     <EditText
+                        android:id="@+id/Name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Enter the Name of Topper"
                         android:imeOptions="actionNext"
                         android:textColorHint="@color/colorPrimary" />
 
-                    <android.support.design.widget.TextInputLayout
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/RollNo"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textColorHint="@color/colorPrimary">
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Percentage"
-                            android:imeOptions="actionNext"
-                            android:inputType="textPersonName"
-                            android:textColorHint="@color/colorPrimary" />
-
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textColorHint="@color/colorPrimary">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="CBSE Board Roll Number"
-                                android:imeOptions="actionNext"
-                                android:inputType="textPassword"
-                                android:textColorHint="@color/colorPrimary" />
-
-                        </android.support.design.widget.TextInputLayout>
-
-                    </android.support.design.widget.TextInputLayout>
+                        android:layout_height="wrap_content"
+                        android:hint="CBSE Board Roll Number"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:textColorHint="@color/colorPrimary" />
 
                 </android.support.design.widget.TextInputLayout>
 
-                <Spinner
-                    android:id="@+id/SelectClass"
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:entries="@array/Class"
-                    android:padding="5dp"
-                    android:textAlignment="viewStart" />
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimary">
 
+                    <EditText
+                        android:id="@+id/Percentage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Percentage"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:textColorHint="@color/colorPrimary" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/SchoolName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter the Name of School of Topper"
+                        android:imeOptions="actionNext"
+                        android:textColorHint="@color/colorPrimary" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/Session"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Session:"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="18dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/ClassText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="8dp"
+                                android:text="Select Class:"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="18dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/Session" />
+
+                            <TextView
+                                android:id="@+id/StreamText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="15dp"
+                                android:text="Stream:"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="18dp"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/ClassText"
+                                app:layout_constraintVertical_bias="0.066" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <Spinner
+                                    android:id="@+id/StartingYear"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_weight="1"
+                                    app:layout_constraintStart_toEndOf="@+id/Session"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <Spinner
+                                    android:id="@+id/EndingYear"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_weight="1"
+                                    app:layout_constraintStart_toEndOf="@+id/StartingYear"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </LinearLayout>
+
+                            <RadioGroup
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginBottom="0dp"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.053"
+                                app:layout_constraintStart_toEndOf="@+id/ClassText"
+                                app:layout_constraintTop_toBottomOf="@+id/Session">
+
+                                <RadioButton
+                                    android:id="@+id/ClassXth"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Xth" />
+
+                                <RadioButton
+                                    android:id="@+id/ClassXIIth"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_weight="1"
+                                    android:text="XIIth" />
+                            </RadioGroup>
+
+                            <Spinner
+                                android:id="@+id/SelectStream"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="1"
+                                android:entries="@array/Stream"
+                                android:padding="5dp"
+                                android:textAlignment="viewStart"
+                                android:visibility="invisible"
+                                app:layout_constraintStart_toEndOf="@+id/StreamText"
+                                app:layout_constraintTop_toBottomOf="@+id/ClassText" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/relativeLayout2"
@@ -110,7 +255,7 @@
                     android:layout_marginTop="8dp">
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/Upload"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
@@ -118,12 +263,13 @@
                         android:text="Upload"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageResult" />
+                        app:layout_constraintTop_toBottomOf="@+id/ResultImage" />
 
                     <TextView
                         android:id="@+id/resulttext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Please Upload a Screenshot of Result"
                         android:textSize="20dp"
                         android:textStyle="bold"
@@ -132,7 +278,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/imageResult"
+                        android:id="@+id/ResultImage"
                         android:layout_width="250dp"
                         android:layout_height="150dp"
                         android:layout_marginTop="30dp"
@@ -144,7 +290,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/uploadresult"
+                        android:id="@+id/SelectResult"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="56dp"
@@ -152,7 +298,7 @@
                         android:src="@drawable/ic_create_black_24dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/imageResult"
+                        app:layout_constraintTop_toTopOf="@+id/ResultImage"
                         app:layout_constraintVertical_bias="0.759" />
 
                 </android.support.constraint.ConstraintLayout>
@@ -166,20 +312,34 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="5dp"
+                android:background="@android:color/holo_blue_dark">
+
+                <TextView
+                    android:id="@+id/Heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center"
+                    android:text="Please Upload the Image of Topper"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/salsa" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageview_account_profile"
+                    android:id="@+id/TopperImage"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
                     android:src="@mipmap/ic_launcher"
                     app:civ_border_color="#FFFFFF"
                     app:civ_border_width="2dp" />
 
                 <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/floatingActionButton"
+                    android:id="@+id/SelectImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

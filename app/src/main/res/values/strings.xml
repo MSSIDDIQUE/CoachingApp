@@ -39,5 +39,12 @@
         <item>Class: XIIth</item>
     </string-array>
 
+    <string-array name="Stream">
+        <item>Science</item>
+        <item>Commerce</item>
+        <item>Arts</item>
+        <item>Others</item>
+    </string-array>
+
 
 </resources>

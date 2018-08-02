@@ -200,4 +200,5 @@ public class MainActivity extends AppCompatActivity
         DialogFragment newFragment = new TimePickerFragment().SetTextId(txtid);
         newFragment.show(getFragmentManager(),"TimePicker");
     }
+
 }
