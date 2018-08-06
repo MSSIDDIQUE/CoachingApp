@@ -220,12 +220,12 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
 
                 if(Teacher.isChecked())
                 {
-                    usersRef.child("TeachersCode").addListenerForSingleValueEvent(new ValueEventListener() {
+                    usersRef.child("Teachers").child("TeachersCode").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if(dataSnapshot.getValue().toString().matches(teacherscode))
                             {
-                                usersRef.child("Users").child(contactno).setValue( new Users(email,name, password,"teacher"));
+                                usersRef.child("Teachers").child(contactno).setValue( new Users(email,name+" Sir", password,"teacher"));
                                 SharedPreferences prefs =PreferenceManager.getDefaultSharedPreferences(getContext());
                                 SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
                                 prefs.edit().putBoolean("Islogin", true).commit();

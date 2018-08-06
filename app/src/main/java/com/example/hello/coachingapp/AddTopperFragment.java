@@ -97,8 +97,8 @@ public class AddTopperFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
 
-                StreamText.setVisibility(View.INVISIBLE);
-                SelectStream.setVisibility(View.INVISIBLE);
+                StreamText.setVisibility(View.GONE);
+                SelectStream.setVisibility(View.GONE);
             }
         });
         XIIth.setOnClickListener(new View.OnClickListener() {

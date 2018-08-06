@@ -142,6 +142,13 @@ public class MainActivity extends AppCompatActivity
             prefs.edit().putBoolean("Teacher",false).commit();
         }
 
+        if(id == R.id.Profile)
+        {
+            f = new ProfileFragment();
+            fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.screen_area, f).commit();
+        }
         return super.onOptionsItemSelected(item);
     }
 

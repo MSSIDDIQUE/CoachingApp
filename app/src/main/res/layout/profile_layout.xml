@@ -59,15 +59,15 @@
                     app:title="Edit Profile Details" />
 
                 <com.alespero.expandablecardview.ExpandableCardView
-                    android:id="@+id/ChangeTime"
+                    android:id="@+id/Classes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    app:animationDuration="300"
                     android:textColor="@color/colorAccent"
+                    app:animationDuration="300"
                     app:expandOnClick="true"
                     app:icon="@drawable/ic_access_time_black_24dp"
-                    app:inner_view="@layout/time_item_layout"
+                    app:inner_view="@layout/recycler_view"
                     app:startExpanded="false"
                     app:title="Update Class Timings" />
 

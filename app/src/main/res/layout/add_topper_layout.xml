@@ -39,9 +39,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="30dp"
                     android:gravity="center"
-                    android:text="Please fill all the Details"
+                    android:text="Please fill the following Details"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     app:fontFamily="@font/salsa" />
@@ -156,7 +157,7 @@
                                 android:text="Stream:"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="18dp"
-                                android:visibility="invisible"
+                                android:visibility="gone"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/ClassText"
@@ -237,7 +238,7 @@
                                 android:entries="@array/Stream"
                                 android:padding="5dp"
                                 android:textAlignment="viewStart"
-                                android:visibility="invisible"
+                                android:visibility="gone"
                                 app:layout_constraintStart_toEndOf="@+id/StreamText"
                                 app:layout_constraintTop_toBottomOf="@+id/ClassText" />
                         </LinearLayout>
@@ -252,7 +253,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="30dp"
+                    android:background="@android:color/holo_blue_dark">
 
                     <Button
                         android:id="@+id/Upload"
@@ -271,6 +273,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Please Upload a Screenshot of Result"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="20dp"
                         android:textStyle="bold"
                         app:fontFamily="@font/salsa"
@@ -323,6 +326,7 @@
                     android:layout_alignParentTop="true"
                     android:gravity="center"
                     android:text="Please Upload the Image of Topper"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     app:fontFamily="@font/salsa" />
@@ -333,6 +337,7 @@
                     android:layout_height="150dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp"
                     android:layout_marginTop="30dp"
                     android:src="@mipmap/ic_launcher"
                     app:civ_border_color="#FFFFFF"
@@ -342,11 +347,9 @@
                     android:id="@+id/SelectImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_alignBottom="@+id/TopperImage"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginEnd="98dp"
-                    android:layout_marginRight="98dp"
+                    android:layout_marginEnd="109dp"
                     android:src="@drawable/ic_create_black_24dp" />
 
             </RelativeLayout>

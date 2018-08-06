@@ -24,12 +24,52 @@
         android:layout_height="wrap_content"
         android:textColorHint="@color/colorPrimary">
 
-        <EditText
+        <TextView
+            android:id="@+id/Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Please Enter User Name"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="  "
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:fontFamily="@font/salsa" />
+
+        <EditText
+            android:id="@+id/EditName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
             android:imeOptions="actionNext"
-            android:textColorHint="@color/colorPrimary" />
+            android:textColorHint="@color/colorPrimary"
+            android:visibility="gone" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColorHint="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/ContactNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="  "
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:fontFamily="@font/salsa" />
+
+        <EditText
+            android:id="@+id/EditContactNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:imeOptions="actionNext"
+            android:textColorHint="@color/colorPrimary"
+            android:visibility="gone" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -38,13 +78,26 @@
         android:layout_height="wrap_content"
         android:textColorHint="@color/colorPrimary">
 
-        <EditText
+        <TextView
+            android:id="@+id/Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email Address"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="  "
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:fontFamily="@font/salsa" />
+
+        <EditText
+            android:id="@+id/EditEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
-            android:textColorHint="@color/colorPrimary" />
+            android:textColorHint="@color/colorPrimary"
+            android:visibility="gone" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -54,13 +107,26 @@
         android:layout_height="wrap_content"
         android:textColorHint="@color/colorPrimary">
 
-        <EditText
+        <TextView
+            android:id="@+id/Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="password"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="  "
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:fontFamily="@font/salsa" />
+
+        <EditText
+            android:id="@+id/EditPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
             android:imeOptions="actionNext"
             android:inputType="textPassword"
-            android:textColorHint="@color/colorPrimary" />
+            android:textColorHint="@color/colorPrimary"
+            android:visibility="gone" />
 
     </android.support.design.widget.TextInputLayout>
 
