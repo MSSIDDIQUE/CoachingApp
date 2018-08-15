@@ -4,131 +4,177 @@
     android:id="@+id/llmain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="vertical"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Profile Details"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        app:fontFamily="@font/salsa" />
+        android:layout_height="match_parent">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/colorPrimary">
-
-        <TextView
-            android:id="@+id/Name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:text="  "
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:fontFamily="@font/salsa" />
+            android:layout_margin="10dp"
+            android:background="@drawable/header"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/EditName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:imeOptions="actionNext"
-            android:textColorHint="@color/colorPrimary"
-            android:visibility="gone" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
 
-    </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:id="@+id/textGrid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/salsa"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Profile Details"
+                    android:textColor="#ffff"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColorHint="@color/colorPrimary">
+            </RelativeLayout>
 
-        <TextView
-            android:id="@+id/ContactNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:text="  "
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:fontFamily="@font/salsa" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:textColorHint="@color/colorPrimary">
 
-        <EditText
-            android:id="@+id/EditContactNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:imeOptions="actionNext"
-            android:textColorHint="@color/colorPrimary"
-            android:visibility="gone" />
+                <TextView
+                    android:id="@+id/Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="  "
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/salsa" />
 
-    </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/EditName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name"
+                    android:imeOptions="actionNext"
+                    android:textColorHint="@color/colorPrimary"
+                    android:visibility="gone" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/colorPrimary">
+            </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/Email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:text="  "
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:fontFamily="@font/salsa" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:textColorHint="@color/colorPrimary">
 
-        <EditText
-            android:id="@+id/EditEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:imeOptions="actionNext"
-            android:inputType="textEmailAddress"
-            android:textColorHint="@color/colorPrimary"
-            android:visibility="gone" />
+                <TextView
+                    android:id="@+id/ContactNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="  "
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/salsa" />
 
-    </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/EditContactNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name"
+                    android:imeOptions="actionNext"
+                    android:textColorHint="@color/colorPrimary"
+                    android:visibility="gone" />
 
+            </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/colorPrimary">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:textColorHint="@color/colorPrimary">
 
-        <TextView
-            android:id="@+id/Password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:text="  "
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:fontFamily="@font/salsa" />
+                <TextView
+                    android:id="@+id/Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="  "
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/salsa" />
 
-        <EditText
-            android:id="@+id/EditPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:imeOptions="actionNext"
-            android:inputType="textPassword"
-            android:textColorHint="@color/colorPrimary"
-            android:visibility="gone" />
+                <EditText
+                    android:id="@+id/EditEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@color/colorPrimary"
+                    android:visibility="gone" />
 
-    </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:textColorHint="@color/colorPrimary">
+
+                <TextView
+                    android:id="@+id/Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="  "
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/salsa" />
+
+                <EditText
+                    android:id="@+id/EditPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/colorPrimary"
+                    android:visibility="gone" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/Edit"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:elevation="10dp"
+                android:padding="10dp"
+                android:text="Edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></Button>
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

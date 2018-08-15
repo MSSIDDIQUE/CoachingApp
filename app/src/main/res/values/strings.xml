@@ -46,5 +46,45 @@
         <item>Others</item>
     </string-array>
 
+    <string-array name="Subjects">
+        <item>Science</item>
+        <item>Social Science</item>
+        <item>English</item>
+        <item>Physics</item>
+        <item>Chemistry</item>
+        <item>Biology</item>
+        <item>Computer Science</item>
+        <item>Mathematics</item>
+        <item>Accountancy</item>
+        <item>Bussiness Studies</item>
+        <item>Economics</item>
+        <item>Information Practices</item>
+        <item>History</item>
+        <item>Pol Science</item>
+        <item>Geography</item>
+        <item>All Subjects</item>
+    </string-array>
 
+    <string-array name="Branches">
+        <item>Fayyaz Ganj</item>
+        <item>Idgah Road</item>
+    </string-array>
+
+    <string-array name="Classes">
+        <item>Post Graduation</item>
+        <item>Graduation</item>
+        <item>XIIth</item>
+        <item>XIth</item>
+        <item>Xth</item>
+        <item>IXth</item>
+        <item>VIIIth</item>
+        <item>VIIth</item>
+        <item>VIth</item>
+        <item>Vth</item>
+        <item>IVth</item>
+        <item>IIIrd</item>
+        <item>IInd</item>
+        <item>Ist</item>
+        <item>Nersury</item>
+    </string-array>
 </resources>

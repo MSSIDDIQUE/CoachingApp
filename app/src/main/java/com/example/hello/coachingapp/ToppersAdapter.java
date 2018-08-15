@@ -57,7 +57,7 @@ public class ToppersAdapter extends RecyclerView.Adapter<ToppersAdapter.MyViewHo
         holder.stream.setText(data.getStream());
         if(data.getStream().toString().equals(""))
         {
-            holder.stream.setVisibility(View.INVISIBLE);
+            holder.stream.setVisibility(View.GONE);
         }
         Picasso.get().load(data.getImgurl()).fit().centerCrop().into(holder.img);
     }

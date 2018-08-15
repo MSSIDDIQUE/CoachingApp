@@ -18,12 +18,11 @@
         android:layout_alignParentLeft="true" />
 
     <ScrollView
-        android:id="@+id/scrolView_account"
+        android:id="@+id/scrolView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true">
+        android:layout_alignParentTop="true">
 
 
         <RelativeLayout
@@ -34,7 +33,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -45,13 +44,16 @@
 
                 <com.alespero.expandablecardview.ExpandableCardView
                     android:id="@+id/profile"
+                    style="@style/MyLightTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:elevation="10dp"
                     android:minWidth="60dp"
+                    android:padding="5dp"
                     android:textAlignment="center"
-                    app:animationDuration="300"
                     android:textColor="@color/colorAccent"
+                    app:animationDuration="300"
                     app:expandOnClick="true"
                     app:icon="@mipmap/ic_contact_mail_black_24dp"
                     app:inner_view="@layout/profile_details_layout"
@@ -59,27 +61,42 @@
                     app:title="Edit Profile Details" />
 
                 <com.alespero.expandablecardview.ExpandableCardView
-                    android:id="@+id/Classes"
+                    android:id="@+id/actions"
+                    style="@style/MyLightTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:elevation="10dp"
+                    android:minWidth="60dp"
+                    android:padding="5dp"
+                    android:textAlignment="center"
                     android:textColor="@color/colorAccent"
                     app:animationDuration="300"
                     app:expandOnClick="true"
-                    app:icon="@drawable/ic_access_time_black_24dp"
-                    app:inner_view="@layout/recycler_view"
+                    app:icon="@drawable/ic_compare_arrows_black_24dp"
+                    app:inner_view="@layout/actions_details_layout"
                     app:startExpanded="false"
-                    app:title="Update Class Timings" />
+                    app:title="Actions" />
+
+                <FrameLayout
+                    android:id="@+id/PlaceHolder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true">
+
+                </FrameLayout>
+
 
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="30dp"
-                android:layout_alignParentLeft="true">
+                android:layout_marginTop="30dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageview_account_profile"
@@ -87,7 +104,7 @@
                     android:layout_height="150dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/ic_account_circle_black_24dp"
                     app:civ_border_color="#FFFFFF"
                     app:civ_border_width="2dp" />
 
