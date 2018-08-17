@@ -93,6 +93,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public void replaceFragment(android.support.v4.app.Fragment f)
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.PlaceHolder,f).setPrimaryNavigationFragment(f).addToBackStack("ChildBackStack").commit();
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -130,7 +137,7 @@ public class MainActivity extends AppCompatActivity
             f = new RegisterFragment();
             fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.screen_area, f).commit();
+            ft.replace(R.id.screen_area, f).addToBackStack("MyBackStack").commit();
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("Islogin", false).apply();
@@ -142,7 +149,7 @@ public class MainActivity extends AppCompatActivity
             f = new ProfileFragment();
             fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.screen_area, f).commit();
+            ft.replace(R.id.screen_area, f).addToBackStack("MyBackStack").commit();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -183,7 +190,7 @@ public class MainActivity extends AppCompatActivity
         if (f!=null) {
             fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.screen_area, f).commit();
+            ft.replace(R.id.screen_area, f).addToBackStack("MyBackStack").commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

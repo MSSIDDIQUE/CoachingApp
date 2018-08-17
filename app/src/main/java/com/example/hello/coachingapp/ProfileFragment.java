@@ -1,26 +1,57 @@
 package com.example.hello.coachingapp;
 
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.webkit.MimeTypeMap;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alespero.expandablecardview.ExpandableCardView;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.sql.Time;
+import java.util.Objects;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.app.Activity.RESULT_OK;
 
 public class ProfileFragment extends android.support.v4.app.Fragment{
 
@@ -33,18 +64,26 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
     public EditText EditPassword;
     public TextView ContactNo;
     public EditText EditContactNo;
+    public Uri ImageFilePath;
     public ExpandableCardView ProfileDetails;
     public ExpandableCardView Classes;
     public RecyclerView rv;
     public ExpandableCardView Profile,Actions;
-    public CardView CreateClass,UpdateTimings;
+    public CardView CreateClass,UpdateTimings,AddTopper,ChangePassword;
     public android.support.v4.app.Fragment TimeItemFragment;
     public ScrollView sc;
+    public CircleImageView profile;
+    public FloatingActionButton change;
+    public String Type,CurrnetEmail;
+    public ProgressBar progressBar,progressBar1;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
 
-
+    StorageReference ImageStorageRef;
+    DatabaseReference dbr;
+    SharedPreferences UserType;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,21 +91,68 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
         Profile = view.findViewById(R.id.profile);
         EditName = Profile.findViewById(R.id.EditName);
         Name = Profile.findViewById(R.id.Name);
+        Name.setVisibility(View.VISIBLE);
         EditEmail = Profile.findViewById(R.id.EditEmail);
         Email = Profile.findViewById(R.id.Email);
+        Email.setVisibility(View.VISIBLE);
         EditContactNo = Profile.findViewById(R.id.EditContactNo);
         ContactNo = Profile.findViewById(R.id.ContactNo);
+        ContactNo.setVisibility(View.VISIBLE);
         EditPassword = Profile.findViewById(R.id.EditPassword);
         Password = Profile.findViewById(R.id.Password);
+        Password.setVisibility(View.VISIBLE);
+        profile = view.findViewById(R.id.Profile);
+        change = view.findViewById(R.id.ChangeProfile);
+        progressBar = view.findViewById(R.id.progressBar3);
+        progressBar1 = view.findViewById(R.id.progressBar4);
+        UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if(UserType.getBoolean("Teacher",false))
+        {
+            Type = "Teacher";
+            ImageStorageRef = FirebaseStorage.getInstance().getReference("TeacherImages");
+            dbr = FirebaseDatabase.getInstance().getReference("Teachers");
+            Log.e("Hello","The Value of Teacher is"+Type);
+        }
+        else
+        {
+            Type = "User";
+            ImageStorageRef = FirebaseStorage.getInstance().getReference("UserImages");
+            dbr = FirebaseDatabase.getInstance().getReference("Users");
+        }
+        getUserData();
+        change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Result Snapshot"), 1);
+            }
+        });
         sc = view.findViewById(R.id.scrolView);
         Actions = view.findViewById(R.id.actions);
+        Actions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sc.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        sc.post(new Runnable() {
+                            public void run() {
+                                sc.fullScroll(View.FOCUS_DOWN);
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
         CreateClass = Actions.findViewById(R.id.CreateClass);
         CreateClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getChildFragmentManager();
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.PlaceHolder,new CreateClassFragment()).commit();
+                android.support.v4.app.Fragment f = new CreateClassFragment();
+                ((MainActivity)getActivity()).replaceFragment(f);
                 sc.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
@@ -85,11 +171,111 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
             public void onClick(View view) {
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.screen_area,new TimeTableTab()).commit();
+                transaction.replace(R.id.screen_area,new TimeTableTab()).addToBackStack("MyBackStack").commit();
+            }
+        });
+
+        AddTopper = Actions.findViewById(R.id.AddTopper);
+        AddTopper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.screen_area,new AddTopperFragment()).addToBackStack("MyBackStack").commit();
+            }
+        });
+
+        ChangePassword = Actions.findViewById(R.id.ChangePassword);
+        ChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                android.support.v4.app.Fragment f = new ChangePasswordFragement();
+                ((MainActivity)getActivity()).replaceFragment(f);
+                sc.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        sc.post(new Runnable() {
+                            public void run() {
+                                sc.fullScroll(View.FOCUS_DOWN);
+                            }
+                        });
+                    }
+                });
+
             }
         });
 
         return view;
+    }
+
+    public void getUserData()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        CurrnetEmail = user.getEmail();
+        progressBar.setVisibility(View.VISIBLE);
+        dbr.orderByChild("email").equalTo(CurrnetEmail).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds:dataSnapshot.getChildren())
+                {
+                    Users usr = ds.getValue(Users.class);
+                    Name.setText(usr.getName());
+                    Email.setText(usr.getEmail());
+                    Password.setText(usr.getPassword());
+                    ContactNo.setText(ds.getKey());
+                    if(!usr.getImgurl().equals(""))
+                    {
+                        Picasso.get().load(usr.getImgurl()).fit().centerCrop().into(profile);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getContext(),"Sorry no record found for the current user",Toast.LENGTH_LONG);
+            }
+        });
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        progressBar1.setVisibility(View.VISIBLE);
+        if (requestCode == 1 && resultCode == RESULT_OK && data.getData() != null) {
+            ImageFilePath = data.getData();
+            final StorageReference childRef = ImageStorageRef.child(Name.getText().toString()+ContactNo.getText().toString()+ "." + getFileExtension(ImageFilePath));
+            UploadTask uploadTask = childRef.putFile(ImageFilePath);
+            final String uploadId = ContactNo.getText().toString();
+            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+
+                    // Continue with the task to get the download URL
+                    return childRef.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                        dbr.child(uploadId).child("imgurl").setValue(downloadUri.toString());
+                        Toast.makeText(getContext(), "Image Upload Successful", Toast.LENGTH_LONG).show();
+                        progressBar1.setVisibility(View.GONE);
+                    }
+                }
+            });
+            Picasso.get().load(ImageFilePath).fit().centerCrop().into(profile);
+        }
+    }
+
+    private String getFileExtension(Uri url)
+    {
+        ContentResolver cr = getActivity().getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(url));
     }
 
 }

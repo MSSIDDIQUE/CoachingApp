@@ -3,7 +3,9 @@ package com.example.hello.coachingapp;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,7 +34,7 @@ public class TimeTableFragment extends android.support.v4.app.Fragment{
     private Context context;
     private ArrayList<TimeData> data;
     private ProgressBar mProgressCircle;
-    ProgressDialog progress;
+    private ProgressDialog progress;
 
     public TimeTableFragment setDBR(String reference)
     {
@@ -71,8 +73,8 @@ public class TimeTableFragment extends android.support.v4.app.Fragment{
                         data.add(d);
                     }
                 }
-                adapter=new TimeTableAdapter(data,getActivity());
-                adapter.notifyDataSetChanged();
+                adapter=new TimeTableAdapter(data,getActivity(),dbr);
+                adapter.notifyItemRangeChanged(0,adapter.getItemCount());
                 rv.setAdapter(adapter);
                 mProgressCircle.setVisibility(view.GONE);
             }

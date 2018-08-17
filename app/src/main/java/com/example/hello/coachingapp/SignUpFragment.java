@@ -192,11 +192,11 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
             public void onComplete(@NonNull final Task<AuthResult> task) {
                 if(User.isChecked())
                 {
-                    usersRef.child("Users").child(contactno).setValue( new Users(email,name, password,"user"));
+                    usersRef.child("Users").child(contactno).setValue( new Users(email,name, password,"user",""));
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                     SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    prefs.edit().putBoolean("Islogin", true).commit();
-                    UserType.edit().putBoolean("Teacher",false).commit();
+                    prefs.edit().putBoolean("Islogin", true).apply();
+                    UserType.edit().putBoolean("Teacher",false).apply();
                     progressBar.setVisibility(view.GONE);
                     if(task.isSuccessful())
                     {
@@ -225,11 +225,12 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if(dataSnapshot.getValue().toString().matches(teacherscode))
                             {
-                                usersRef.child("Teachers").child(contactno).setValue( new Users(email,name+" Sir", password,"teacher"));
+                                usersRef.child("Teachers").child(contactno).setValue( new Users(email,name+" Sir", password,"teacher", ""));
+                                usersRef.child("Users").child(contactno).setValue(new Users(email,name+" Sir", password,"teacher", ""));
                                 SharedPreferences prefs =PreferenceManager.getDefaultSharedPreferences(getContext());
                                 SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
-                                prefs.edit().putBoolean("Islogin", true).commit();
-                                UserType.edit().putBoolean("Teacher", true).commit();
+                                prefs.edit().putBoolean("Islogin", true).apply();
+                                UserType.edit().putBoolean("Teacher", true).apply();
                                 progressBar.setVisibility(view.GONE);
                                 if(task.isSuccessful())
                                 {

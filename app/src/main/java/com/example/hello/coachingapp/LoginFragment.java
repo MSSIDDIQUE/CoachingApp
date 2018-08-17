@@ -142,12 +142,12 @@ public class LoginFragment extends android.support.v4.app.Fragment {
                                 Users u = dataSnapshot1.getValue(Users.class);
                                 if(u.getType().equals("teacher"))
                                 {
-                                    UserType.edit().putBoolean("Teacher",true).commit();
+                                    UserType.edit().putBoolean("Teacher",true).apply();
                                     Log.e("Hey","The Retrieved Value of is Teacher is "+UserType.getBoolean("Teacher",false));
                                 }
                                 else
                                 {
-                                    UserType.edit().putBoolean("Teacher",false).commit();
+                                    UserType.edit().putBoolean("Teacher",false).apply();
                                 }
                             }
                         }

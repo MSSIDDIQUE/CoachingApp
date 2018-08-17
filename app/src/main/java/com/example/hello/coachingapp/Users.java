@@ -1,13 +1,22 @@
 package com.example.hello.coachingapp;
 
 public class Users {
-    private String Email,Name,Password,Type;
+    private String Email,Name,Password,Type,Imgurl;
 
-    public Users(String email, String name, String password, String type) {
+    public Users(String email, String name, String password, String type, String imgurl) {
         Type = type;
         Email = email;
         Name = name;
         Password = password;
+        Imgurl = imgurl;
+    }
+
+    public String getImgurl() {
+        return Imgurl;
+    }
+
+    public void setImgurl(String imgurl) {
+        Imgurl = imgurl;
     }
 
     public Users() {}

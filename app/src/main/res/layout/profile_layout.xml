@@ -78,15 +78,6 @@
                     app:startExpanded="false"
                     app:title="Actions" />
 
-                <FrameLayout
-                    android:id="@+id/PlaceHolder"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true">
-
-                </FrameLayout>
-
 
             </LinearLayout>
 
@@ -99,7 +90,7 @@
                 android:layout_marginTop="30dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageview_account_profile"
+                    android:id="@+id/Profile"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_alignParentTop="true"
@@ -109,7 +100,7 @@
                     app:civ_border_width="2dp" />
 
                 <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/floatingActionButton"
+                    android:id="@+id/ChangeProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -119,10 +110,28 @@
                     android:layout_marginRight="98dp"
                     android:src="@drawable/ic_create_black_24dp" />
 
+                <ProgressBar
+                    android:id="@+id/progressBar4"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone" />
+
             </RelativeLayout>
 
 
         </RelativeLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar3"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="180dp"
+        android:visibility="gone" />
 
 </RelativeLayout>

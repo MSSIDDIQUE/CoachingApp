@@ -57,15 +57,24 @@ public class ToppersTab extends android.support.v4.app.Fragment {
         {
             view=inflater.inflate(R.layout.toppers_tab_layout,container,false);
             addTopper = view.findViewById(R.id.floatingActionButton4);
-            addTopper.setVisibility(View.VISIBLE);
-            addTopper.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
-                    fm.beginTransaction().add(R.id.screen_area, new AddTopperFragment())
-                            .addToBackStack("MyBackStack").commit();
-                }
-            });
+            SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
+            if(UserType.getBoolean("Teacher",false))
+            {
+                addTopper.setVisibility(View.VISIBLE);
+                addTopper.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
+                        fm.beginTransaction().add(R.id.screen_area, new AddTopperFragment())
+                                .addToBackStack("MyBackStack").commit();
+                    }
+                });
+            }
+            else
+            {
+                addTopper.setVisibility(View.GONE);
+            }
+
         }
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.addTab(tabLayout.newTab().setText("Class: Xth"));
