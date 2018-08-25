@@ -154,6 +154,7 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
             Password.requestFocus();
             return;
         }
+        
 
         if(password.length()<6)
         {
