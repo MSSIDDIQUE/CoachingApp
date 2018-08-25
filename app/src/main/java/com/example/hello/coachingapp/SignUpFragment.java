@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.AuthResult;
@@ -36,6 +37,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.ArrayList;
 
@@ -186,87 +189,98 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
         }
         progressBar.setVisibility(view.VISIBLE);
 
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference();
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
-            public void onComplete(@NonNull final Task<AuthResult> task) {
-                if(User.isChecked())
-                {
-                    usersRef.child("Users").child(contactno).setValue( new Users(email,name, password,"user",""));
-                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    prefs.edit().putBoolean("Islogin", true).apply();
-                    UserType.edit().putBoolean("Teacher",false).apply();
-                    progressBar.setVisibility(view.GONE);
-                    if(task.isSuccessful())
-                    {
-                        Toast.makeText(getContext(),"User Registered Successfully", Toast.LENGTH_SHORT).show();
-                        android.support.v4.app.FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
-                        fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
-                    }
-                    else
-                    {
-                        if(task.getException() instanceof FirebaseAuthUserCollisionException)
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                final String tokenId = instanceIdResult.getToken().toString();
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference();
+                    String WelcomeNote = "Hello "+name+" Study Solutions Welcomes You";
+                    MessageData md = new MessageData("Welcome", WelcomeNote,"Admin");
+                    @Override
+                    public void onComplete(@NonNull final Task<AuthResult> task) {
+                        if(User.isChecked())
                         {
-                            Toast.makeText(getContext(),"Contact number or Email Address is already registered", Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(getContext(),task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                }
-
-                if(Teacher.isChecked())
-                {
-                    usersRef.child("Teachers").child("TeachersCode").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.getValue().toString().matches(teacherscode))
+                            usersRef.child("Users").child(contactno).setValue( new Users(email,name, password,"user","",tokenId));
+                            usersRef.child("Users").child(contactno).child("notifications").push().setValue(md);
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                            SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
+                            prefs.edit().putBoolean("Islogin", true).apply();
+                            UserType.edit().putBoolean("Teacher",false).apply();
+                            progressBar.setVisibility(view.GONE);
+                            if(task.isSuccessful())
                             {
-                                usersRef.child("Teachers").child(contactno).setValue( new Users(email,name+" Sir", password,"teacher", ""));
-                                usersRef.child("Users").child(contactno).setValue(new Users(email,name+" Sir", password,"teacher", ""));
-                                SharedPreferences prefs =PreferenceManager.getDefaultSharedPreferences(getContext());
-                                SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
-                                prefs.edit().putBoolean("Islogin", true).apply();
-                                UserType.edit().putBoolean("Teacher", true).apply();
-                                progressBar.setVisibility(view.GONE);
-                                if(task.isSuccessful())
-                                {
-                                    Toast.makeText(getContext(),"Teacher Registered Successfully", Toast.LENGTH_SHORT).show();
-                                    getActivity().setTitle(R.string.Home);
-                                    android.support.v4.app.FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
-                                    fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
-                                }
-                                else
-                                {
-                                    if(task.getException() instanceof FirebaseAuthUserCollisionException)
-                                    {
-                                        Toast.makeText(getContext(),"Contact number is already registered", Toast.LENGTH_SHORT).show();
-
-                                    }
-                                    else
-                                    {
-                                        Toast.makeText(getContext(),task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
+                                Toast.makeText(getContext(),"User Registered Successfully", Toast.LENGTH_SHORT).show();
+                                android.support.v4.app.FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
+                                fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
                             }
                             else
                             {
-                                TeacherCode.setError("Please Enter a valid Teachers Code");
-                                progressBar.setVisibility(view.GONE);
-                                return;
+                                if(task.getException() instanceof FirebaseAuthUserCollisionException)
+                                {
+                                    Toast.makeText(getContext(),"Contact number or Email Address is already registered", Toast.LENGTH_LONG).show();
+                                }
+                                else
+                                {
+                                    Toast.makeText(getContext(),task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+
                             }
-
                         }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        if(Teacher.isChecked())
+                        {
+                            usersRef.child("Teachers").child("TeachersCode").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.getValue().toString().matches(teacherscode))
+                                    {
+                                        usersRef.child("Teachers").child(contactno).setValue( new Users(email,name+" Sir", password,"teacher", "",tokenId));
+                                        usersRef.child("Teachers").child(contactno).child("notifications").push().setValue(md);
+                                        usersRef.child("Users").child(contactno).setValue(new Users(email,name+" Sir", password,"teacher", "",tokenId));
+                                        usersRef.child("Users").child(contactno).child("notifications").push().setValue(md);
+                                        SharedPreferences prefs =PreferenceManager.getDefaultSharedPreferences(getContext());
+                                        SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
+                                        prefs.edit().putBoolean("Islogin", true).apply();
+                                        UserType.edit().putBoolean("Teacher", true).apply();
+                                        progressBar.setVisibility(view.GONE);
+                                        if(task.isSuccessful())
+                                        {
+                                            Toast.makeText(getContext(),"Teacher Registered Successfully", Toast.LENGTH_SHORT).show();
+                                            getActivity().setTitle(R.string.Home);
+                                            android.support.v4.app.FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
+                                            fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
+                                        }
+                                        else
+                                        {
+                                            if(task.getException() instanceof FirebaseAuthUserCollisionException)
+                                            {
+                                                Toast.makeText(getContext(),"Contact number is already registered", Toast.LENGTH_SHORT).show();
 
+                                            }
+                                            else
+                                            {
+                                                Toast.makeText(getContext(),task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        TeacherCode.setError("Please Enter a valid Teachers Code");
+                                        progressBar.setVisibility(view.GONE);
+                                        return;
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
                         }
-                    });
-                }
+                    }
+                });
             }
         });
     }

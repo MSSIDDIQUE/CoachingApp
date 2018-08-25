@@ -23,8 +23,12 @@
           }
         },
         {
-          "client_id": "478931591492-kmhfkfkher98jii2mmievkd4aeeolubg.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "478931591492-0f40is36suo79tanpn0d28m8vls4eblj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hello.coachingapp",
+            "certificate_hash": "98264809aa66350973f01e1cfe4871906e74f9f2"
+          }
         },
         {
           "client_id": "478931591492-kmhfkfkher98jii2mmievkd4aeeolubg.apps.googleusercontent.com",

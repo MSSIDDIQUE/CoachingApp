@@ -35,6 +35,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,6 +43,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar;
     TabLayout tabLayout;
     FirebaseUser firebaseUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +71,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -73,13 +80,10 @@ public class MainActivity extends AppCompatActivity
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         boolean Islogin = prefs.getBoolean("Islogin", false);
-        if(Islogin)
-        {
+        if (Islogin) {
             setTitle(R.string.Home);
             f = new TimeItemFragment();
-        }
-        else
-        {
+        } else {
             setTitle("Register/Login");
             f = new RegisterFragment();
 
@@ -93,11 +97,10 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void replaceFragment(android.support.v4.app.Fragment f)
-    {
+    public void replaceFragment(android.support.v4.app.Fragment f) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.PlaceHolder,f).setPrimaryNavigationFragment(f).addToBackStack("ChildBackStack").commit();
+        transaction.replace(R.id.PlaceHolder, f).setPrimaryNavigationFragment(f).addToBackStack("ChildBackStack").commit();
     }
 
     @Override
@@ -106,8 +109,7 @@ public class MainActivity extends AppCompatActivity
         int count = getFragmentManager().getBackStackEntryCount();
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else if (count == 0) {
+        } else if (count == 0) {
             super.onBackPressed();
             //additional code
         } else {
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(getApplicationContext(),"You hava Successfully Signed out", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "You hava Successfully Signed out", Toast.LENGTH_SHORT).show();
             setTitle("Register/Login");
             f = new RegisterFragment();
             fm = getSupportFragmentManager();
@@ -141,11 +143,10 @@ public class MainActivity extends AppCompatActivity
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("Islogin", false).apply();
-            prefs.edit().putBoolean("Teacher",false).commit();
+            prefs.edit().putBoolean("Teacher", false).commit();
         }
 
-        if(id == R.id.Profile)
-        {
+        if (id == R.id.Profile) {
             f = new ProfileFragment();
             fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
@@ -159,7 +160,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if(id==R.id.nav_home) {
+        if (id == R.id.nav_home) {
             setTitle(R.string.Home);
             f = new HomeFragment();
 
@@ -168,7 +169,7 @@ public class MainActivity extends AppCompatActivity
             f = new ToppersTab();
 
         } else if (id == R.id.nav_gallery) {
-            f= new TimeTableTab();
+            f = new TimeTableTab();
 
         } else if (id == R.id.nav_studymaterial) {
             setTitle(R.string.StudyMaterial);
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        if (f!=null) {
+        if (f != null) {
             fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.screen_area, f).addToBackStack("MyBackStack").commit();
@@ -196,18 +197,36 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public void onButtonClicked(View v){
-        String txtid=null;
-        if(v.getId()==R.id.ChangeFrom)
-        {
-            txtid="From";
-        }
-        else
-        {
-            txtid="To";
+
+    public void onButtonClicked(View v) {
+        String txtid = null;
+        if (v.getId() == R.id.ChangeFrom) {
+            txtid = "From";
+        } else {
+            txtid = "To";
         }
         DialogFragment newFragment = new TimePickerFragment().SetTextId(txtid);
-        newFragment.show(getFragmentManager(),"TimePicker");
+        newFragment.show(getFragmentManager(), "TimePicker");
     }
 
+    private void sendRegistrationToServer(String token) {
+        Log.d("Hello", "sendRegistrationToServer: sending token to server: " + token);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        reference.child("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("messaging_token")
+                .setValue(token);
+    }
+
+
+    private void initFCM() {
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String token = instanceIdResult.getToken();
+                Log.d("Hello", "initFCM: token: " + token);
+                sendRegistrationToServer(token);
+            }
+        });
+    }
 }
