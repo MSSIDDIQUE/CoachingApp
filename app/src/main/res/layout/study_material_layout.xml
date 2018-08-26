@@ -73,7 +73,7 @@
 
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/CreateClass"
+                        android:id="@+id/Chemistry"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
@@ -116,7 +116,7 @@
                     <!-- COLUMN 2  -->
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/UpdateTimings"
+                        android:id="@+id/Physics"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
@@ -162,7 +162,7 @@
                     <!-- COLUMN 1  -->
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/AddTopper"
+                        android:id="@+id/Biology"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
@@ -207,7 +207,7 @@
                     <!-- ROW 3  -->
                     <!-- COLUMN 1  -->
                     <android.support.v7.widget.CardView
-                        android:id="@+id/ChangePassword"
+                        android:id="@+id/Mathematics"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
@@ -248,7 +248,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/Notice"
+                        android:id="@+id/Accounts"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
@@ -289,7 +289,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/newgd"
+                        android:id="@+id/Economics"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
@@ -330,7 +330,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/Ndsad"
+                        android:id="@+id/Business"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
@@ -371,7 +371,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/Notidsd"
+                        android:id="@+id/History"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
@@ -412,7 +412,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/Notce"
+                        android:id="@+id/PoliticalScience"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
@@ -453,7 +453,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/Noice"
+                        android:id="@+id/ComputerScience"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
