@@ -7,499 +7,490 @@
     android:background="@color/BookBackgroundColor"
     tools:context="com.example.hello.coachingapp.StudyMaterialFragment">
 
-    <FrameLayout
-        android:id="@+id/PlaceHolder"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
+        <LinearLayout
+            android:id="@+id/llmain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:id="@+id/llmain"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="vertical"
-                android:padding="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_weight="2">
 
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/textGrid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2">
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/salsa"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Subjects"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/textGrid"
+            </RelativeLayout>
+
+            <GridLayout
+                android:id="@+id/mainGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:alignmentMode="alignMargins"
+                android:columnCount="2"
+                android:columnOrderPreserved="false"
+                android:rowCount="3">
+
+                <!-- ROW 1  -->
+                <!-- COLUMN 1  -->
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/Chemistry"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_rowWeight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/salsa"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="Subjects"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                </RelativeLayout>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/chemistry" />
 
-                <GridLayout
-                    android:id="@+id/mainGrid"
-                    android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/salsa"
+                            android:text="Chemistry"
+                            android:textAlignment="center"
+                            android:textColor="@color/ListViewColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!-- COLUMN 2  -->
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/Physics"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:alignmentMode="alignMargins"
-                    android:columnCount="2"
-                    android:columnOrderPreserved="false"
-                    android:rowCount="3">
+                    android:layout_columnWeight="1"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_rowWeight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
-                    <!-- ROW 1  -->
-                    <!-- COLUMN 1  -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/Chemistry"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/physics" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/chemistry" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/salsa"
-                                android:text="Chemistry"
-                                android:textAlignment="center"
-                                android:textColor="@color/ListViewColor"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <!-- COLUMN 2  -->
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/Physics"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/salsa"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="Physics"
+                            android:textAlignment="center"
+                            android:textColor="@color/ListViewColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/physics" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/salsa"
-                                android:gravity="center_vertical|center_horizontal"
-                                android:text="Physics"
-                                android:textAlignment="center"
-                                android:textColor="@color/ListViewColor"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
+                </android.support.v7.widget.CardView>
 
 
-                    <!-- ROW 2  -->
-                    <!-- COLUMN 1  -->
+                <!-- ROW 2  -->
+                <!-- COLUMN 1  -->
 
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/Biology"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/Biology"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_rowWeight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
-                        <LinearLayout
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/biology" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/biology" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/salsa"
-                                android:text="Biology"
-                                android:textAlignment="center"
-                                android:textColor="@color/ListViewColor"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-                    <!-- COLUMN 2  -->
-
-
-                    <!-- ROW 3  -->
-                    <!-- COLUMN 1  -->
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/Mathematics"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/salsa"
+                            android:text="Biology"
+                            android:textAlignment="center"
+                            android:textColor="@color/ListViewColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                            <ImageView
-                                android:layout_width="150dp"
-                                android:layout_height="120dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/maths" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/salsa"
-                                android:text="Mathematics"
-                                android:textAlignment="center"
-                                android:textColor="@color/ListViewColor"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+                <!-- COLUMN 2  -->
 
-                        </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                <!-- ROW 3  -->
+                <!-- COLUMN 1  -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/Mathematics"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_rowWeight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/Accounts"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                        <LinearLayout
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/maths" />
+
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/salsa"
+                            android:text="Mathematics"
+                            android:textAlignment="center"
+                            android:textColor="@color/ListViewColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/accounting" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/salsa"
-                                android:text="Accounts"
-                                android:textAlignment="center"
-                                android:textColor="@color/ListViewColor"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
 
-                        </LinearLayout>
+                <android.support.v7.widget.CardView
+                    android:id="@+id/Accounts"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_rowWeight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
-                    </android.support.v7.widget.CardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/Economics"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/accounting" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/economics" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/salsa"
-                                android:text="Economics"
-                                android:textAlignment="center"
-                                android:textColor="@color/ListViewColor"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/Business"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/salsa"
+                            android:text="Accounts"
+                            android:textAlignment="center"
+                            android:textColor="@color/ListViewColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/business" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/salsa"
-                                android:text="Business"
-                                android:textAlignment="center"
-                                android:textColor="@color/ListViewColor"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
 
-                        </LinearLayout>
+                <android.support.v7.widget.CardView
+                    android:id="@+id/Economics"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_rowWeight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
-                    </android.support.v7.widget.CardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/History"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/economics" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/history" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/salsa"
-                                android:text="History"
-                                android:textAlignment="center"
-                                android:textColor="@color/ListViewColor"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/PoliticalScience"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/salsa"
+                            android:text="Economics"
+                            android:textAlignment="center"
+                            android:textColor="@color/ListViewColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/politicalscience" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/salsa"
-                                android:text="Political Science"
-                                android:textAlignment="center"
-                                android:textColor="@color/ListViewColor"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
 
-                        </LinearLayout>
+                <android.support.v7.widget.CardView
+                    android:id="@+id/Business"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_rowWeight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
-                    </android.support.v7.widget.CardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/ComputerScience"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/business" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/computerscience" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/salsa"
+                            android:text="Business"
+                            android:textAlignment="center"
+                            android:textColor="@color/ListViewColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/salsa"
-                                android:text="Computer Sciencce"
-                                android:textAlignment="center"
-                                android:textColor="@color/ListViewColor"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
+                    </LinearLayout>
 
-                        </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-                    </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:id="@+id/History"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_rowWeight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/history" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/salsa"
+                            android:text="History"
+                            android:textAlignment="center"
+                            android:textColor="@color/ListViewColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/PoliticalScience"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_rowWeight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/politicalscience" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/salsa"
+                            android:text="Political Science"
+                            android:textAlignment="center"
+                            android:textColor="@color/ListViewColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/ComputerScience"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_rowWeight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/computerscience" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/salsa"
+                            android:text="Computer Sciencce"
+                            android:textAlignment="center"
+                            android:textColor="@color/ListViewColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
 
 
-                    <!-- COLUMN 2  -->
+                <!-- COLUMN 2  -->
 
-                </GridLayout>
+            </GridLayout>
 
-            </LinearLayout>
-        </ScrollView>
-    </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
