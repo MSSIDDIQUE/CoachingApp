@@ -133,6 +133,7 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
             }
         });
         return view;
+
     }
 
     @Override
