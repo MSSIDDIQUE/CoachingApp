@@ -5,7 +5,7 @@
     android:id="@+id/activity_profile"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/cardview_light_background"
+    android:background="@android:color/holo_blue_light"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,7 +33,7 @@
                 android:background="#fff">
 
                 <TextView
-                    android:id="@+id/cardTicketName"
+                    android:id="@+id/Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"

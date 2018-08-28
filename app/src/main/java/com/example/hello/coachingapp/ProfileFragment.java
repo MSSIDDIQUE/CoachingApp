@@ -69,7 +69,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
     public ExpandableCardView Classes;
     public RecyclerView rv;
     public ExpandableCardView Profile,Actions;
-    public CardView CreateClass,UpdateTimings,AddTopper,ChangePassword,CreateNotices;
+    public CardView CreateClass,UpdateTimings,AddTopper,ChangePassword,CreateNotices,AddStudyMaterial;
     public android.support.v4.app.Fragment TimeItemFragment;
     public ScrollView sc;
     public CircleImageView profile;
@@ -210,6 +210,25 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
             @Override
             public void onClick(View view) {
                 android.support.v4.app.Fragment f = new CreateNoticeFragment();
+                ((MainActivity)getActivity()).replaceFragment(f);
+                sc.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        sc.post(new Runnable() {
+                            public void run() {
+                                sc.fullScroll(View.FOCUS_DOWN);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+        AddStudyMaterial = Actions.findViewById(R.id.AddStudyMaterial);
+        AddStudyMaterial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.support.v4.app.Fragment f = new AddStudyMaterialFragment();
                 ((MainActivity)getActivity()).replaceFragment(f);
                 sc.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override

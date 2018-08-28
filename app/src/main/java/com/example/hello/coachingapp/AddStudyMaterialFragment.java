@@ -14,6 +14,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -34,21 +36,22 @@ import com.squareup.picasso.Picasso;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import javax.security.auth.Subject;
+
 import static android.app.Activity.RESULT_OK;
 
 public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
 
 
     private View view;
-    private Spinner SelectSubject, SelectClass, SelectMateralType;
+    private Spinner SelectSubject, SelectClass, SelectMaterialType;
     private Button Choose, Upload;
     private Uri ImageFilePath;
+    private EditText BookTitle;
     ProgressBar pb;
 
     DatabaseReference dbr = FirebaseDatabase.getInstance().getReference();
-    ArrayList<String>Classes = new ArrayList<String>();
-    ArrayList<String>Type = new ArrayList<String>();
-
+    StorageReference ImageStorageRef;
     public AddStudyMaterialFragment() {
         // Required empty public constructor
     }
@@ -60,7 +63,8 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
         view = inflater.inflate(R.layout.add_study_material_layout,container, false);
         SelectClass = view.findViewById(R.id.SelectClass);
         SelectSubject = view.findViewById(R.id.SelectSubject);
-        SelectMateralType = view.findViewById(R.id.SelectMaterailType);
+        SelectMaterialType = view.findViewById(R.id.SelectMaterailType);
+        BookTitle = view.findViewById(R.id.BookTitleEditText);
         pb = view.findViewById(R.id.pb);
         pb.setVisibility(View.GONE);
         Choose = view.findViewById(R.id.Choose);
@@ -69,16 +73,38 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setType("image/*");
+                intent.setType("application/pdf");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select pdf file"), 1);
             }
         });
 
+        dbr.child("StudyMaterial").addValueEventListener(new ValueEventListener() {
+
+            ArrayList<String>Subjects = new ArrayList<String>();
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds:dataSnapshot.getChildren())
+                {
+                    Subjects.add(ds.getKey().toString());
+                }
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_spinner_item, Subjects);
+                SelectSubject.setAdapter(dataAdapter);
+                dataAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         SelectSubject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                dbr.child("StudyMaterial").addValueEventListener(new ValueEventListener() {
+                dbr.child("StudyMaterial").child(SelectSubject.getSelectedItem().toString()).addValueEventListener(new ValueEventListener() {
+
+                    ArrayList<String>Classes = new ArrayList<String>();
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot ds:dataSnapshot.getChildren())
@@ -107,7 +133,9 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
         SelectClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                dbr.child("StudyMaterial").child(SelectSubject.getSelectedItem().toString()).addValueEventListener(new ValueEventListener() {
+                dbr.child("StudyMaterial").child(SelectSubject.getSelectedItem().toString()).child(SelectClass.getSelectedItem().toString()).addValueEventListener(new ValueEventListener() {
+
+                    ArrayList<String>Type = new ArrayList<String>();
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot ds:dataSnapshot.getChildren())
@@ -116,7 +144,7 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
                         }
                         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
                                 android.R.layout.simple_spinner_item, Type);
-                        SelectClass.setAdapter(dataAdapter);
+                        SelectMaterialType.setAdapter(dataAdapter);
                         dataAdapter.notifyDataSetChanged();
                     }
 
@@ -132,6 +160,58 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
 
             }
         });
+
+        Upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String booktitle = BookTitle.getText().toString();
+                final String subject = SelectSubject.getSelectedItem().toString();
+                final String classs = SelectClass.getSelectedItem().toString();
+                final String type = SelectMaterialType.getSelectedItem().toString();
+                if(type.isEmpty())
+                {
+                    Toast.makeText(getContext(),"Please Select the Type of StydyMaterial",Toast.LENGTH_LONG).show();
+                    SelectMaterialType.requestFocus();
+                    return;
+                }
+                if(booktitle.isEmpty())
+                {
+                    BookTitle.setError("Enter the book title first");
+                    BookTitle.requestFocus();
+                    return;
+                }
+                else
+                {
+                    pb.setVisibility(View.VISIBLE);
+                    ImageStorageRef = FirebaseStorage.getInstance().getReference("StudyMaterial"+"/"+subject+"/"+classs+"/"+type);
+                    final StorageReference childRef = ImageStorageRef.child(booktitle+"-"+subject+"-"+classs+"." + getFileExtension(ImageFilePath));
+                    UploadTask uploadTask = childRef.putFile(ImageFilePath);
+                    final String uploadId = SelectSubject.getSelectedItem().toString();
+                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
+                            }
+
+                            // Continue with the task to get the download URL
+                            return childRef.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()) {
+                                Uri downloadUri = task.getResult();
+                                StudyMaterialData sd = new StudyMaterialData(booktitle+"-"+subject+"-"+classs+"." + getFileExtension(ImageFilePath),downloadUri.toString());
+                                dbr.child("StudyMaterial").child(subject).child(classs).child(type).child(booktitle).setValue(sd);
+                                Toast.makeText(getContext(), "pdf Upload Successful", Toast.LENGTH_LONG).show();
+                                pb.setVisibility(View.GONE);
+                            }
+                        }
+                    });
+                }
+            }
+        });
         return view;
 
     }
@@ -139,7 +219,6 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        pb.setVisibility(View.VISIBLE);
         if (requestCode == 1 && resultCode == RESULT_OK && data.getData() != null) {
             ImageFilePath = data.getData();
         }
