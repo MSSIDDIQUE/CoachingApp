@@ -131,6 +131,10 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
         });
         sc = view.findViewById(R.id.scrolView);
         Actions = view.findViewById(R.id.actions);
+        if(!UserType.getBoolean("Teacher",false))
+        {
+            Actions.setVisibility(View.GONE);
+        }
         Actions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

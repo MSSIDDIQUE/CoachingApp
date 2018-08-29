@@ -1,10 +1,15 @@
 package com.example.hello.coachingapp;
 
 import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -15,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,6 +40,16 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        boolean Islogin = prefs.getBoolean("Islogin",false);
+        if(!Islogin)
+        {
+            Toast.makeText(getContext(),"Please make sure that you have Successfully Logged in to your Acccount", Toast.LENGTH_LONG);
+            view = inflater.inflate(R.layout.sorry_layout,container,false);
+            TextView text = (TextView)view.findViewById(R.id.textView);
+            text.setText("Please make sure that you have Successfully Logged in to your Acccount");
+            return view;
+        }
         final View view = inflater.inflate(R.layout.study_material_layout,container,false);
         Chemistry = view.findViewById(R.id.Chemistry);
         Chemistry.setOnClickListener(new View.OnClickListener() {
@@ -146,5 +162,21 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
         return view;
     }
 
+    public boolean isConnected()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager)getContext().getSystemService(Service.CONNECTIVITY_SERVICE);
+        if(connectivityManager!=null)
+        {
+            NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+            if(info!=null)
+            {
+                if(info.getState() == NetworkInfo.State.CONNECTED)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 }

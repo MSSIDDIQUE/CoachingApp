@@ -6,347 +6,346 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="25dp">
 
-    <ScrollView
+    <android.support.v7.widget.CardView
+        android:id="@+id/card1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:elevation="24dp"
+        android:padding="24dp"
+        app:cardBackgroundColor="#424367"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:gravity="center_vertical|center_horizontal|center">
+
+            <LinearLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/textGrid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/salsa"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Create new Class"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@color/colorAccent" />
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/NameOfTeacher"
+                android:layout_width="206dp"
+                android:layout_height="0dp"
+                android:textColorHint="@android:color/holo_red_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SelectBranch">
+
+                <EditText
+                    android:id="@+id/TeacherName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="52dp"
+                    android:ems="10"
+                    android:hint="Must be ended with Sir/Mam"
+                    android:imeOptions="actionNext"
+                    android:textColorLink="@android:color/holo_green_light"
+                    android:textSize="15dp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/Teacher"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Subject Teacher:"
+                android:textColor="@color/colorAccent"
+                android:textSize="20dp"
+                android:visibility="visible"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Branch" />
+
+            <Spinner
+                android:id="@+id/SelectBranch"
+                android:layout_width="199dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:entries="@array/Branches"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/Branch"
+                app:layout_constraintTop_toBottomOf="@+id/SelectSubject" />
+
+            <TextView
+                android:id="@+id/Branch"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Select Branch:"
+                android:textColor="@color/colorAccent"
+                android:textSize="20dp"
+                android:visibility="visible"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Subject" />
+
+            <TextView
+                android:id="@+id/ToTxt"
+                android:layout_width="152dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Finish Time"
+                android:textColor="@color/colorAccent"
+                android:visibility="visible"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/DayPicker" />
+
+            <TextView
+                android:id="@+id/FromTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Commencement Time"
+                android:textColor="@color/colorAccent"
+                android:visibility="visible"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintEnd_toStartOf="@id/ToTxt"
+                app:layout_constraintHorizontal_bias="0.115"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/DayPicker" />
+
+            <Spinner
+                android:id="@+id/SelectSubject"
+                android:layout_width="199dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:entries="@array/Subjects"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toEndOf="@+id/Class"
+                app:layout_constraintTop_toBottomOf="@+id/SelectClass" />
+
+            <TextView
+                android:id="@+id/Subject"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Select Subject:"
+                android:textColor="@color/colorAccent"
+                android:textSize="20dp"
+                android:visibility="visible"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Class" />
+
+            <TextView
+                android:id="@+id/Class"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Select Class:"
+                android:textColor="@color/colorAccent"
+                android:textSize="20dp"
+                android:visibility="visible"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+            <TextView
+                android:id="@+id/To"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="8dp"
+                android:editable="false"
+                android:ems="10"
+                android:gravity="right|center_vertical"
+                android:inputType="time"
+                android:padding="10dp"
+                android:text="6:30 PM"
+                android:textColor="@color/colorAccent"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ChangeTo"
+                app:layout_constraintTop_toBottomOf="@+id/ToTxt"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/From"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:editable="false"
+                android:ems="10"
+                android:gravity="right|center_vertical"
+                android:inputType="time"
+                android:padding="10dp"
+                android:text="5:30 PM"
+                android:textColor="@color/colorAccent"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/FromTxt"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/ChangeFrom"
+                android:layout_width="35dp"
+                android:layout_height="50dp"
+                android:onClick="onButtonClicked"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/From"
+                app:layout_constraintTop_toBottomOf="@+id/FromTxt"
+                app:srcCompat="@drawable/ic_create_black_24dp"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageView
+                android:id="@+id/ChangeTo"
+                android:layout_width="35dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:onClick="onButtonClicked"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ToTxt"
+                app:srcCompat="@drawable/ic_create_black_24dp"
+                tools:ignore="VectorDrawableCompat" />
 
             <android.support.v7.widget.CardView
-                android:id="@+id/card1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:elevation="24dp"
+                android:id="@+id/DayPicker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/white"
+                android:clickable="true"
                 android:padding="24dp"
                 app:cardBackgroundColor="#424367"
-                app:cardCornerRadius="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintTop_toBottomOf="@id/msg">
 
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/linearLayout2"
+                <LinearLayout
+                    android:id="@+id/daypicker_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical|center_horizontal|center">
+                    android:layout_below="@+id/linearLayout"
+                    android:layout_centerHorizontal="true"
+                    android:clickable="true">
 
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="2"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
-
-                        <TextView
-                            android:id="@+id/textGrid"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:fontFamily="@font/salsa"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:text="Create new Class"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="30dp"
-                            android:textStyle="bold" />
-
-                    </RelativeLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/NameOfTeacher"
-                        android:layout_width="206dp"
-                        android:layout_height="0dp"
-                        android:textColorHint="@android:color/holo_red_dark"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/SelectBranch">
-
-                        <EditText
-                            android:id="@+id/TeacherName"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="52dp"
-                            android:ems="10"
-                            android:hint="Must be ended with Sir/Mam"
-                            android:imeOptions="actionNext"
-                            android:textColorLink="@android:color/holo_green_light"
-                            android:textSize="15dp" />
-                    </android.support.design.widget.TextInputLayout>
-
-                    <TextView
-                        android:id="@+id/Teacher"
-                        android:layout_width="150dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="Subject Teacher:"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="20dp"
-                        android:visibility="visible"
-                        app:fontFamily="@font/salsa"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/Branch" />
-
-                    <Spinner
-                        android:id="@+id/SelectBranch"
-                        android:layout_width="199dp"
-                        android:layout_height="50dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:entries="@array/Branches"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@+id/Branch"
-                        app:layout_constraintTop_toBottomOf="@+id/SelectSubject" />
-
-                    <TextView
-                        android:id="@+id/Branch"
-                        android:layout_width="150dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="Select Branch:"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="20dp"
-                        android:visibility="visible"
-                        app:fontFamily="@font/salsa"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/Subject" />
-
-                    <TextView
-                        android:id="@+id/ToTxt"
-                        android:layout_width="152dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="Finish Time"
-                        android:textColor="@color/colorAccent"
-                        android:visibility="visible"
-                        app:fontFamily="@font/salsa"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/DayPicker" />
-
-                    <TextView
-                        android:id="@+id/FromTxt"
+                    <include
+                        android:id="@+id/daypicker"
+                        layout="@layout/daypicker_layout"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="Commencement Time"
-                        android:textColor="@color/colorAccent"
-                        android:visibility="visible"
-                        app:fontFamily="@font/salsa"
-                        app:layout_constraintEnd_toStartOf="@id/ToTxt"
-                        app:layout_constraintHorizontal_bias="0.115"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/DayPicker" />
-
-                    <Spinner
-                        android:id="@+id/SelectSubject"
-                        android:layout_width="199dp"
-                        android:layout_height="50dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:entries="@array/Subjects"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.516"
-                        app:layout_constraintStart_toEndOf="@+id/Class"
-                        app:layout_constraintTop_toBottomOf="@+id/SelectClass" />
-
-                    <TextView
-                        android:id="@+id/Subject"
-                        android:layout_width="150dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="Select Subject:"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="20dp"
-                        android:visibility="visible"
-                        app:fontFamily="@font/salsa"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/Class" />
-
-                    <TextView
-                        android:id="@+id/Class"
-                        android:layout_width="150dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="Select Class:"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="20dp"
-                        android:visibility="visible"
-                        app:fontFamily="@font/salsa"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
-
-                    <TextView
-                        android:id="@+id/To"
-                        android:layout_width="120dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="8dp"
-                        android:editable="false"
-                        android:ems="10"
-                        android:gravity="right|center_vertical"
-                        android:inputType="time"
-                        android:padding="10dp"
-                        android:text="6:30 PM"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="25dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/ChangeTo"
-                        app:layout_constraintTop_toBottomOf="@+id/ToTxt"
-                        app:layout_constraintVertical_bias="0.0" />
-
-                    <TextView
-                        android:id="@+id/From"
-                        android:layout_width="120dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginStart="8dp"
-                        android:editable="false"
-                        android:ems="10"
-                        android:gravity="right|center_vertical"
-                        android:inputType="time"
-                        android:padding="10dp"
-                        android:text="5:30 PM"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="25dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/FromTxt"
-                        app:layout_constraintVertical_bias="0.0" />
-
-                    <ImageView
-                        android:id="@+id/ChangeFrom"
-                        android:layout_width="35dp"
-                        android:layout_height="50dp"
-                        android:onClick="onButtonClicked"
-                        android:visibility="visible"
-                        app:layout_constraintStart_toEndOf="@+id/From"
-                        app:layout_constraintTop_toBottomOf="@+id/FromTxt"
-                        app:srcCompat="@drawable/ic_create_black_24dp"
-                        tools:ignore="VectorDrawableCompat" />
-
-                    <ImageView
-                        android:id="@+id/ChangeTo"
-                        android:layout_width="35dp"
-                        android:layout_height="50dp"
-                        android:layout_marginEnd="8dp"
-                        android:onClick="onButtonClicked"
-                        android:visibility="visible"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ToTxt"
-                        app:srcCompat="@drawable/ic_create_black_24dp"
-                        tools:ignore="VectorDrawableCompat" />
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/DayPicker"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@android:color/white"
-                        android:clickable="true"
-                        android:padding="24dp"
-                        app:cardBackgroundColor="#424367"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/msg">
-
-                        <LinearLayout
-                            android:id="@+id/daypicker_layout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/linearLayout"
-                            android:layout_centerHorizontal="true"
-                            android:clickable="true">
-
-                            <include
-                                android:id="@+id/daypicker"
-                                layout="@layout/daypicker_layout"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"></include>
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                        android:id="@+id/msg"
-                        android:layout_width="358dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="Please Select The Days Of Your Class"
-                        android:textColor="@color/colorAccent"
-                        android:visibility="visible"
-                        app:fontFamily="@font/salsa"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/Teacher" />
-
-                    <Spinner
-                        android:id="@+id/SelectClass"
-                        android:layout_width="199dp"
-                        android:layout_height="50dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:entries="@array/Classes"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.857"
-                        app:layout_constraintStart_toEndOf="@+id/Class"
-                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
-
-                    <Button
-                        android:id="@+id/Create"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:elevation="10dp"
-                        android:padding="10dp"
-                        android:text="Create"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/From" />
-
-                    <ProgressBar
-                        android:id="@+id/progressBar2"
-                        style="?android:attr/progressBarStyle"
-                        android:layout_width="126dp"
-                        android:layout_height="109dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintBottom_toTopOf="@+id/Create"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/relativeLayout" />
-                </android.support.constraint.ConstraintLayout>
-
+                        android:layout_height="wrap_content"></include>
+                </LinearLayout>
             </android.support.v7.widget.CardView>
-        </LinearLayout>
-    </ScrollView>
+
+            <TextView
+                android:id="@+id/msg"
+                android:layout_width="358dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Please Select The Days Of Your Class"
+                android:textColor="@color/colorAccent"
+                android:visibility="visible"
+                app:fontFamily="@font/salsa"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Teacher" />
+
+            <Spinner
+                android:id="@+id/SelectClass"
+                android:layout_width="199dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:entries="@array/Classes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.857"
+                app:layout_constraintStart_toEndOf="@+id/Class"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+            <Button
+                android:id="@+id/Create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:elevation="10dp"
+                android:padding="10dp"
+                android:text="Create"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/From"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="126dp"
+                android:layout_height="109dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/Create"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/relativeLayout" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
 
 </android.support.constraint.ConstraintLayout>
