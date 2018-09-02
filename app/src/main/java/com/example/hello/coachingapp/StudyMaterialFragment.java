@@ -65,7 +65,7 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fm.beginTransaction().add(R.id.screen_area, new ClassListFragment().setDbr("Physics"))
+                fm.beginTransaction().replace(R.id.screen_area, new ClassListFragment().setDbr("Physics"))
                         .addToBackStack("MyBackStack").commit();
             }
         });
@@ -74,7 +74,7 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fm.beginTransaction().add(R.id.screen_area, new ClassListFragment().setDbr("Mathematics"))
+                fm.beginTransaction().replace(R.id.screen_area, new ClassListFragment().setDbr("Mathematics"))
                         .addToBackStack("MyBackStack").commit();
             }
         });
@@ -83,7 +83,7 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fm.beginTransaction().add(R.id.screen_area, new ClassListFragment().setDbr("Biology"))
+                fm.beginTransaction().replace(R.id.screen_area, new ClassListFragment().setDbr("Biology"))
                         .addToBackStack("MyBackStack").commit();
             }
         });
@@ -92,7 +92,7 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fm.beginTransaction().add(R.id.screen_area, new ClassListFragment().setDbr("Accounts"))
+                fm.beginTransaction().replace(R.id.screen_area, new ClassListFragment().setDbr("Accounts"))
                         .addToBackStack("MyBackStack").commit();
             }
         });
@@ -101,7 +101,7 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fm.beginTransaction().add(R.id.screen_area, new ClassListFragment().setDbr("Economics"))
+                fm.beginTransaction().replace(R.id.screen_area, new ClassListFragment().setDbr("Economics"))
                         .addToBackStack("MyBackStack").commit();
             }
         });
@@ -110,7 +110,7 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fm.beginTransaction().add(R.id.screen_area, new ClassListFragment().setDbr("Business"))
+                fm.beginTransaction().replace(R.id.screen_area, new ClassListFragment().setDbr("Business"))
                         .addToBackStack("MyBackStack").commit();
             }
         });
@@ -119,7 +119,7 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fm.beginTransaction().add(R.id.screen_area, new ClassListFragment().setDbr("History"))
+                fm.beginTransaction().replace(R.id.screen_area, new ClassListFragment().setDbr("History"))
                         .addToBackStack("MyBackStack").commit();
             }
         });
@@ -128,7 +128,7 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fm.beginTransaction().add(R.id.screen_area, new ClassListFragment().setDbr("Geography"))
+                fm.beginTransaction().replace(R.id.screen_area, new ClassListFragment().setDbr("Geography"))
                         .addToBackStack("MyBackStack").commit();
             }
         });
@@ -137,7 +137,7 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fm.beginTransaction().add(R.id.screen_area, new ClassListFragment().setDbr("PoliticalScience"))
+                fm.beginTransaction().replace(R.id.screen_area, new ClassListFragment().setDbr("PoliticalScience"))
                         .addToBackStack("MyBackStack").commit();
             }
         });
@@ -146,7 +146,7 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fm.beginTransaction().add(R.id.screen_area, new ClassListFragment().setDbr("ComputerScience"))
+                fm.beginTransaction().replace(R.id.screen_area, new ClassListFragment().setDbr("ComputerScience"))
                         .addToBackStack("MyBackStack").commit();
             }
         });
@@ -155,7 +155,7 @@ public class StudyMaterialFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-                fm.beginTransaction().add(R.id.screen_area, new ClassListFragment().setDbr("English"))
+                fm.beginTransaction().replace(R.id.screen_area, new ClassListFragment().setDbr("English"))
                         .addToBackStack("MyBackStack").commit();
             }
         });

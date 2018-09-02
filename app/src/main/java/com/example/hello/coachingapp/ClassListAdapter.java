@@ -46,6 +46,8 @@ public interface OnItemClickListener{
     @Override
     public void onBindViewHolder(ClassListAdapter.MyViewHolder holder, int position) {
         String d = ListArray.get(position);
+        String s[] = d.split("/");
+        d =s[s.length-1];
         holder.Title.setText(d);
     }
 

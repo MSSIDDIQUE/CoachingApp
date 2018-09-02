@@ -17,10 +17,12 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
+        card_view:cardBackgroundColor="@color/ListViewColor"
         card_view:cardCornerRadius="10dp"
         card_view:cardElevation="10dp">
 
         <LinearLayout
+            android:id="@+id/PlaceHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -35,7 +37,7 @@
                 android:fontFamily="@font/salsa"
                 android:gravity="center"
                 android:text="Book Title"
-                android:textColor="#484848"
+                android:textColor="@color/cardview_light_background"
                 android:textSize="25dp"
                 android:textStyle="bold"
                 card_view:layout_constraintBottom_toBottomOf="parent"
@@ -54,14 +56,6 @@
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/Heading" />
-
-            <com.example.hello.coachingapp.MyListView
-                android:id="@+id/ListOfBooks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-            </com.example.hello.coachingapp.MyListView>
 
         </LinearLayout>
 

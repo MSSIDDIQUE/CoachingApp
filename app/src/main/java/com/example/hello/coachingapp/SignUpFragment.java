@@ -50,7 +50,6 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
     private EditText Password;
     private EditText ContactNo;
     private EditText TeacherCode;
-    private TextView Message;
     private Button Register;
     private FirebaseAuth mAuth;
     private View view;
@@ -70,7 +69,6 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
         Teacher = view.findViewById(R.id.Teacher);
         User = view.findViewById(R.id.User);
         TeacherCode = (EditText) view.findViewById(R.id.TeachersCode);
-        Message = view.findViewById(R.id.Message);
         mAuth = FirebaseAuth.getInstance();
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,14 +79,12 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
         Teacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Message.setVisibility(View.VISIBLE);
                 TeacherCode.setVisibility(View.VISIBLE);
             }
         });
         User.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Message.setVisibility(View.INVISIBLE);
                 TeacherCode.setVisibility(View.INVISIBLE);
             }
         });

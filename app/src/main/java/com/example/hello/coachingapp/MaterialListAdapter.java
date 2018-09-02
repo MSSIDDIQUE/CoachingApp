@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapter.MyViewHolder> {
 
@@ -58,26 +61,16 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
     @Override
     public void onBindViewHolder(final MaterialListAdapter.MyViewHolder holder, int position) {
         String d = ListArray.get(position);
+        String s[] = d.split("/");
+        d =s[s.length-1];
         holder.Title.setText(d);
-        data = new ArrayList<StudyMaterialData>();
-        DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("StudyMaterial").child(d);
-        dbr.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    StudyMaterialData sd = ds.getValue(StudyMaterialData.class);
-                    data.add(sd);
-                }
-                adapter=new ListViewAdapter(data,context);
-                adapter.notifyDataSetChanged();
-                holder.ListOfBooks.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setId(position+1);
+        FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,FrameLayout.LayoutParams.WRAP_CONTENT);
+        holder.PlaceHolder.addView(frameLayout,flp);
+        FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
+        fm.beginTransaction().replace(frameLayout.getId(), new ListViewFragment().setDbr(position, ListArray, context))
+                .commit();
     }
 
 
@@ -94,12 +87,14 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
         public RecyclerView rv;
         public ProgressBar pb;
         public ListView ListOfBooks;
+        public LinearLayout PlaceHolder;
         public MyViewHolder(View itemView, final Context context, final ArrayList<String> data) {
             super(itemView);
             Title = (TextView)itemView.findViewById(R.id.Heading);
-            ListOfBooks = (ListView)itemView.findViewById(R.id.ListOfBooks);
             this.context=context;
-            this.data=data;
+            this.data=data;int position = getAdapterPosition();
+            PlaceHolder = itemView.findViewById(R.id.PlaceHolder);
+            //Log.d("Hello", String.valueOf(position));
         }
 
     }

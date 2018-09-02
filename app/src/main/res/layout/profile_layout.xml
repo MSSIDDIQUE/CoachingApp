@@ -58,7 +58,7 @@
                     app:icon="@mipmap/ic_contact_mail_black_24dp"
                     app:inner_view="@layout/profile_details_layout"
                     app:startExpanded="false"
-                    app:title="Edit Profile Details" />
+                    app:title="Profile Details" />
 
                 <com.alespero.expandablecardview.ExpandableCardView
                     android:id="@+id/actions"
