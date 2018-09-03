@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar;
     TabLayout tabLayout;
     FirebaseUser firebaseUser;
+    boolean doubleBackToExitPressedOnce = false;
 
     private int STORAGE_PERMISSION_CODE = 1;
     @Override
@@ -190,6 +191,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (id == R.id.Profile) {
+            setTitle("Profile Section");
             f = new ProfileFragment();
             fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
@@ -212,6 +214,7 @@ public class MainActivity extends AppCompatActivity
             f = new ToppersTab();
 
         } else if (id == R.id.nav_gallery) {
+            setTitle("Time Table");
             f = new TimeTableTab();
 
         } else if (id == R.id.nav_studymaterial) {
