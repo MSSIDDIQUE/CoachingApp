@@ -44,3 +44,7 @@ some special autorities and Actions
 
 ![screenshot_study_solutions_20180904-105634 2](https://user-images.githubusercontent.com/24757345/45014185-47440800-b03b-11e8-8090-7f9a077f75e1.png)
 
+![screenshot_study_solutions_20180903-165707 2](https://user-images.githubusercontent.com/24757345/45014310-b4f03400-b03b-11e8-9185-aaba57f0ea07.png)
+
+
+
