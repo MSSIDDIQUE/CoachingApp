@@ -39,4 +39,5 @@ some special autorities and Actions
 
  # Application Snapshots
  
- ![Uploading ic_launcher1-web.png…]()
+ 
+![ic_launcher1-web](https://user-images.githubusercontent.com/24757345/45013959-90e02300-b03a-11e8-8e82-92e782b2259f.png)
