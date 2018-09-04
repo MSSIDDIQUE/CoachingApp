@@ -39,5 +39,7 @@ some special autorities and Actions
 
  # Application Snapshots
  
- ![launcher icon](ic_launcher1.png)
+ ![launcher icon](
+      CoachingApp/app/src/main/res/mipmap-hdpi/ic_launcher1.png
+    )
 
