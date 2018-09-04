@@ -39,5 +39,5 @@ some special autorities and Actions
 
  # Application Snapshots
  
- ![alt Slash Screen](https://drive.google.com/open?id=17ndGxu2nZc5cQSHYMWW_tqD0TFbd7XuM)
+ ![launcher icon](ic_launcher1.png)
 
