@@ -39,5 +39,4 @@ some special autorities and Actions
 
  # Application Snapshots
  
- ![launcher icon](ic_launcher1.png)
-
+ ![Uploading ic_launcher1-web.png…]()
