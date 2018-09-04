@@ -37,3 +37,7 @@ some special autorities and Actions
 ### 4.Can Change the Timings of the Classes
 ### 5.Can Brodcast new Notifications and the Circulars
 
+ # Application Snapshots
+ 
+ ![alt Slash Screen](https://drive.google.com/open?id=17ndGxu2nZc5cQSHYMWW_tqD0TFbd7XuM)
+
