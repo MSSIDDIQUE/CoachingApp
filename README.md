@@ -41,3 +41,6 @@ some special autorities and Actions
  
  
 ![ic_launcher1-web](https://user-images.githubusercontent.com/24757345/45013959-90e02300-b03a-11e8-8e82-92e782b2259f.png)
+
+![screenshot_study_solutions_20180904-105634 2](https://user-images.githubusercontent.com/24757345/45014185-47440800-b03b-11e8-8090-7f9a077f75e1.png)
+
