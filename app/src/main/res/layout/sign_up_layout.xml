@@ -12,6 +12,20 @@
     <!-- TODO: Update blank fragment layout -->
 
     <EditText
+        android:id="@+id/VerificationCode"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="Enter the verification Code sended to the given phone no "
+        android:inputType="phone"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorAccent"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TeachersCode" />
+
+    <EditText
         android:id="@+id/TeachersCode"
         android:layout_width="300dp"
         android:layout_height="40dp"
@@ -99,7 +113,7 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TeachersCode" />
+        app:layout_constraintTop_toBottomOf="@+id/VerificationCode" />
 
     <ProgressBar
         android:id="@+id/progressBar"

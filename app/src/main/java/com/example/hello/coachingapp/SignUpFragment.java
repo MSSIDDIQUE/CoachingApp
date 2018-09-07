@@ -29,9 +29,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseError;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +47,9 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import static android.content.ContentValues.TAG;
 
 
 public class SignUpFragment extends android.support.v4.app.Fragment {
@@ -49,12 +58,16 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
     private EditText Email;
     private EditText Password;
     private EditText ContactNo;
-    private EditText TeacherCode;
     private Button Register;
     private FirebaseAuth mAuth;
+    private EditText TeacherCode;
+    private EditText VerificationCode;
     private View view;
     private RadioButton Teacher;
     private RadioButton User;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+    private String mVarificationId;
+    private PhoneAuthProvider.ForceResendingToken mResendToken;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,23 +82,63 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
         Teacher = view.findViewById(R.id.Teacher);
         User = view.findViewById(R.id.User);
         TeacherCode = (EditText) view.findViewById(R.id.TeachersCode);
+        TeacherCode.setVisibility(View.GONE);
+        VerificationCode = (EditText)view.findViewById(R.id.VerificationCode);
+        VerificationCode.setVisibility(View.GONE);
         mAuth = FirebaseAuth.getInstance();
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegisterUser();
+                if(ContactNo.getText().toString().isEmpty())
+                {
+                    ContactNo.setError("Contact number cannot be empty");
+                    ContactNo.requestFocus();
+                    return;
+                }
+                if(VerificationCode.getText().toString().isEmpty())
+                {
+                  VerificationCode.setError("Enter the Verification Code first");
+                  VerificationCode.requestFocus();
+                  return;
+                }
+                else
+                {
+                    verifyVerificationCode(VerificationCode.getText().toString());
+                }
             }
         });
         Teacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(ContactNo.getText().toString().isEmpty())
+                {
+                    ContactNo.setError("Enter the contact no first");
+                    ContactNo.requestFocus();
+                    return;
+                }
+                else if(isConnected())
+                {
+                    VerifyPhone(ContactNo.getText().toString());
+                    VerificationCode.setVisibility(View.VISIBLE);
+                }
                 TeacherCode.setVisibility(View.VISIBLE);
             }
         });
         User.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TeacherCode.setVisibility(View.INVISIBLE);
+                TeacherCode.setVisibility(View.GONE);
+                if(ContactNo.getText().toString().isEmpty())
+                {
+                    ContactNo.setError("Enter the contact no first");
+                    ContactNo.requestFocus();
+                    return;
+                }
+                else if(isConnected())
+                {
+                    VerifyPhone(ContactNo.getText().toString());
+                    VerificationCode.setVisibility(View.VISIBLE);
+                }
             }
         });
         return view;
@@ -108,7 +161,7 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
         return false;
     }
 
-    private void RegisterUser()
+    private void RegisterUser(final PhoneAuthCredential credential)
     {
         final String email = Email.getText().toString().trim();
         final String password = Password.getText().toString();
@@ -210,6 +263,8 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
                                 Toast.makeText(getContext(),"User Registered Successfully", Toast.LENGTH_SHORT).show();
                                 android.support.v4.app.FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
                                 fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
+                                mAuth.signInWithEmailAndPassword(email,password);
+                                mAuth.getCurrentUser().linkWithCredential(credential);
                             }
                             else
                             {
@@ -247,6 +302,8 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
                                             getActivity().setTitle(R.string.Home);
                                             android.support.v4.app.FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
                                             fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
+                                            mAuth.signInWithEmailAndPassword(email,password);
+                                            mAuth.getCurrentUser().linkWithCredential(credential);
                                         }
                                         else
                                         {
@@ -278,9 +335,71 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
                         }
                     }
                 });
-            }
+               }
         });
     }
 
+    public void VerifyPhone(String contactno)
+    {
+        mCallbacks= new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            @Override
+            public void onVerificationCompleted(PhoneAuthCredential credential) {
+                // This callback will be invoked in two situations:
+                // 1 - Instant verification. In some cases the phone number can be instantly
+                //     verified without needing to send or enter a verification code.
+                // 2 - Auto-retrieval. On some devices Google Play services can automatically
+                //     detect the incoming verification SMS and perform verification without
+                //     user action.
+                Log.d(TAG, "onVerificationCompleted:" + credential);
+
+
+            }
+
+            @Override
+            public void onVerificationFailed(FirebaseException e) {
+                // This callback is invoked in an invalid request for verification is made,
+                // for instance if the the phone number format is not valid.
+                Log.w(TAG, "onVerificationFailed", e);
+
+                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                    // Invalid request
+                    // ...
+                } else if (e instanceof FirebaseTooManyRequestsException) {
+                    // The SMS quota for the project has been exceeded
+                    // ...
+                }
+
+                // Show a message and update the UI
+                // ...
+            }
+
+            @Override
+            public void onCodeSent(String verificationId,
+                                   PhoneAuthProvider.ForceResendingToken token) {
+                // The SMS verification code has been sent to the provided phone number, we
+                // now need to ask the user to enter the code and then construct a credential
+                // by combining the code with a verification ID.
+                Log.d(TAG, "onCodeSent:" + verificationId);
+
+                // Save verification ID and resending token so we can use them later
+                mVarificationId= verificationId;
+                mResendToken = token;
+
+                // ...
+            }
+        };
+
+        PhoneAuthProvider.getInstance().verifyPhoneNumber("+91"+contactno,60, TimeUnit.SECONDS,getActivity(),mCallbacks);
+
+    }
+
+    private void verifyVerificationCode(String otp) {
+        //creating the credential
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVarificationId, otp);
+
+        //signing the user
+        RegisterUser(credential);
+    }
 
 }

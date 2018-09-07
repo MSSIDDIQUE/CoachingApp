@@ -158,7 +158,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
                     });
                     getActivity().setTitle(R.string.Home);
                     FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
-                    fm.beginTransaction().replace(R.id.screen_area,new TimeItemFragment()).commit();
+                    fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
                 }
 
                 else {
