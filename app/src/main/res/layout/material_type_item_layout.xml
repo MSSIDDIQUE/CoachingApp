@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_profile"
@@ -14,12 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
         card_view:cardBackgroundColor="@color/ListViewColor"
         card_view:cardCornerRadius="10dp"
-        card_view:cardElevation="10dp">
+        card_view:cardElevation="10dp"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/PlaceHolder"
@@ -31,9 +32,9 @@
                 android:id="@+id/Heading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/salsa"
                 android:gravity="center"
                 android:text="Book Title"
@@ -49,9 +50,9 @@
                 android:id="@+id/underline"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
                 android:background="@android:color/black"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
@@ -60,4 +61,4 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

@@ -22,7 +22,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -62,7 +64,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
     public EditText EditEmail;
     public TextView Password;
     public EditText EditPassword;
-    public TextView ContactNo;
+    public TextView ContactNo,GraduationTxt;
     public EditText EditContactNo;
     public Uri ImageFilePath;
     public ExpandableCardView ProfileDetails;
@@ -76,6 +78,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
     public FloatingActionButton change;
     public String Type,CurrnetEmail;
     public ProgressBar progressBar,progressBar1;
+    public FrameLayout PlaceHolder;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -101,6 +104,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
         EditPassword = Profile.findViewById(R.id.EditPassword);
         Password = Profile.findViewById(R.id.Password);
         Password.setVisibility(View.VISIBLE);
+        PlaceHolder = view.findViewById(R.id.PlaceHolder);
         profile = view.findViewById(R.id.Profile);
         change = view.findViewById(R.id.ChangeProfile);
         progressBar = view.findViewById(R.id.progressBar3);
@@ -119,6 +123,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
             ImageStorageRef = FirebaseStorage.getInstance().getReference("UserImages");
             dbr = FirebaseDatabase.getInstance().getReference("Users");
         }
+        progressBar.setVisibility(View.VISIBLE);
         getUserData();
         change.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,22 +214,13 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
             }
         });
 
-        CreateNotices = Actions.findViewById(R.id.Notice);
+        CreateNotices = Actions.findViewById(R.id.AddDetails);
         CreateNotices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                android.support.v4.app.Fragment f = new CreateNoticeFragment();
-                ((MainActivity)getActivity()).replaceFragment(f);
-                sc.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() {
-                        sc.post(new Runnable() {
-                            public void run() {
-                                sc.fullScroll(View.FOCUS_DOWN);
-                            }
-                        });
-                    }
-                });
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.screen_area,new AddDetailsFragement().setContactNo(ContactNo.getText().toString())).addToBackStack("MyBackStack").commit();
             }
         });
 
@@ -303,6 +299,8 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
                     if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
                         dbr.child(uploadId).child("imgurl").setValue(downloadUri.toString());
+                        dbr = FirebaseDatabase.getInstance().getReference().child("Users");
+                        dbr.child(uploadId).setValue(downloadUri.toString());
                         Toast.makeText(getContext(), "Image Upload Successful", Toast.LENGTH_LONG).show();
                         progressBar1.setVisibility(View.GONE);
                     }

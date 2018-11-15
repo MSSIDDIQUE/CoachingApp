@@ -118,9 +118,9 @@
                             android:id="@+id/ContactNoTxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
                             android:layout_weight="1"
                             android:text="Phone Number:"
                             android:textColor="@color/colorAccent"
@@ -288,6 +288,21 @@
                         android:visibility="gone" />
 
                 </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/GraduationTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:text="Name:"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:fontFamily="@font/salsa" />
 
             </LinearLayout>
         </ScrollView>

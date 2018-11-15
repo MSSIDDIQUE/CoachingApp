@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "478931591492-jaiminlomp57k6p31lfp09nuq2hau9j8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hello.coachingapp",
+            "certificate_hash": "edd366514a3f421df59fb75d3f4b659189d13297"
+          }
+        },
+        {
           "client_id": "478931591492-kmhfkfkher98jii2mmievkd4aeeolubg.apps.googleusercontent.com",
           "client_type": 3
         }

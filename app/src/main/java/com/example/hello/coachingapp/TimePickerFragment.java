@@ -9,6 +9,7 @@ import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,24 +24,15 @@ import java.util.Calendar;
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
     private String txtid=null;
+    private View v;
+    String time;
 
-    public TimePickerFragment SetTextId(String txtid)
+    public TimePickerFragment SetTextId(String txtid, View v)
     {
         TimePickerFragment tpf = new TimePickerFragment();
-        tpf.txtid=txtid;
+        tpf.txtid = txtid;
+        tpf.v = v;
         return tpf;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.time_picker_layout, container, false);
     }
 
     @SuppressLint("ResourceAsColor")
@@ -49,7 +41,6 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         final Calendar c = Calendar.getInstance();
         int hour = c.get(Calendar.HOUR_OF_DAY);
         int minute = c.get(Calendar.MINUTE);
-
         TimePickerDialog tpd = new TimePickerDialog(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_DARK
                 ,this, hour, minute, DateFormat.is24HourFormat(getActivity()));
 
@@ -78,8 +69,6 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 
     @Override
     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-        TextView From = (TextView) getActivity().findViewById(R.id.From);
-        TextView To = (TextView) getActivity().findViewById(R.id.To);
         String aMpM = "AM";
         if(hourOfDay >11)
         {
@@ -104,13 +93,15 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
             hr = formatter.format(currentHour);
         }
         String min = formatter.format(minute);
-        if (txtid=="From")
+        time = hr + ":" + min+ " " + aMpM;
+        ((TextView)v).setText(time);
+    }
+    public String getSetTime()
+    {
+        if(time!=null)
         {
-            From.setText(hr + ":" + min+ " " + aMpM);
+            return time;
         }
-        else
-        {
-            To.setText(hr + ":" + min+ " " + aMpM);
-        }
+        return null;
     }
 }

@@ -54,7 +54,7 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
     }
     @Override
     public MaterialListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.material_type_item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_1, parent, false);
         return new MaterialListAdapter.MyViewHolder(view, context, ListArray);
     }
 
@@ -64,13 +64,6 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
         String s[] = d.split("/");
         d =s[s.length-1];
         holder.Title.setText(d);
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setId(position+1);
-        FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,FrameLayout.LayoutParams.WRAP_CONTENT);
-        holder.PlaceHolder.addView(frameLayout,flp);
-        FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
-        fm.beginTransaction().replace(frameLayout.getId(), new ListViewFragment().setDbr(position, ListArray, context))
-                .commit();
     }
 
 
@@ -90,11 +83,19 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
         public LinearLayout PlaceHolder;
         public MyViewHolder(View itemView, final Context context, final ArrayList<String> data) {
             super(itemView);
-            Title = (TextView)itemView.findViewById(R.id.Heading);
+            Title = (TextView)itemView.findViewById(R.id.Title);
             this.context=context;
-            this.data=data;int position = getAdapterPosition();
-            PlaceHolder = itemView.findViewById(R.id.PlaceHolder);
-            //Log.d("Hello", String.valueOf(position));
+            this.data=data;
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    Log.d("Hello", String.valueOf(position));
+                    FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
+                    fm.beginTransaction().replace(R.id.screen_area, new ListViewFragment().setDbr(position, data, context))
+                            .addToBackStack("MyBackStack").commit();
+                }
+            });
         }
 
     }

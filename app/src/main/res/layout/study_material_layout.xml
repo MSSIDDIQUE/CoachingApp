@@ -37,10 +37,6 @@
         android:id="@+id/ScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +46,6 @@
             android:id="@+id/llmain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:orientation="horizontal"
             android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -68,9 +63,9 @@
                     android:id="@+id/Chemistry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -109,9 +104,9 @@
                     android:id="@+id/Physics"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -124,7 +119,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id ="@+id/PhysicsImg"
+                            android:id="@+id/PhysicsImg"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:layout_gravity="center_horizontal"
@@ -153,9 +148,9 @@
                     android:id="@+id/Biology"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -168,7 +163,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id ="@+id/BiologyImg"
+                            android:id="@+id/BiologyImg"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:layout_gravity="center_horizontal"
@@ -196,9 +191,9 @@
                     android:id="@+id/Mathematics"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -211,7 +206,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id ="@+id/MathematicsImg"
+                            android:id="@+id/MathematicsImg"
                             android:layout_width="150dp"
                             android:layout_height="120dp"
                             android:layout_gravity="center_horizontal"
@@ -236,9 +231,9 @@
                     android:id="@+id/Economics"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -251,7 +246,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id ="@+id/EconomicsImg"
+                            android:id="@+id/EconomicsImg"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:layout_gravity="center_horizontal"
@@ -275,9 +270,9 @@
                     android:id="@+id/ComputerScience"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -290,7 +285,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id ="@+id/ComputerScienceImg"
+                            android:id="@+id/ComputerScienceImg"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:layout_gravity="center_horizontal"
@@ -300,10 +295,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/salsa"
-                            android:text="Computer Sciencce"
+                            android:text="Computer Science"
                             android:textAlignment="center"
                             android:textColor="@color/ListViewColor"
-                            android:textSize="18sp"
+                            android:textSize="17sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -321,9 +316,9 @@
                     android:id="@+id/Accounts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -336,7 +331,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id ="@+id/AccountsImg"
+                            android:id="@+id/AccountsImg"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:layout_gravity="center_horizontal"
@@ -360,9 +355,9 @@
                     android:id="@+id/Business"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -375,7 +370,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id ="@+id/BusinessImg"
+                            android:id="@+id/BusinessImg"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:layout_gravity="center_horizontal"
@@ -399,9 +394,9 @@
                     android:id="@+id/History"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -414,7 +409,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id ="@+id/HistoryImg"
+                            android:id="@+id/HistoryImg"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:layout_gravity="center_horizontal"
@@ -438,9 +433,9 @@
                     android:id="@+id/English"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -453,7 +448,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id ="@+id/EnglishImg"
+                            android:id="@+id/EnglishImg"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:layout_gravity="center_horizontal"
@@ -477,9 +472,9 @@
                     android:id="@+id/Geography"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -516,9 +511,9 @@
                     android:id="@+id/PoliticalScience"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_rowWeight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 

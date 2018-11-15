@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ public class ListViewFragment extends android.support.v4.app.Fragment {
     String d;
 
     private View view;
-    private MyListView lv;
+    private RecyclerView rv;
     private ListViewAdapter adapter;
     private ArrayList<StudyMaterialData> data;
     private ProgressBar pb;
@@ -42,8 +43,14 @@ public class ListViewFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.list_view_layout,container,false);
-        lv = view.findViewById(R.id.ListOfBooks);
+        view = inflater.inflate(R.layout.recycler_view,container,false);
+        pb = view.findViewById(R.id.progress_bar);
+        pb.setVisibility(View.GONE);
+        rv = view.findViewById(R.id.recyclerView1);
+        rv.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        rv.setLayoutManager(layoutManager);
+        rv.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         GetDataFirebase();
         return view;
     }
@@ -61,7 +68,7 @@ public class ListViewFragment extends android.support.v4.app.Fragment {
                 }
                 adapter=new ListViewAdapter(data,getContext());
                 adapter.notifyDataSetChanged();
-                lv.setAdapter(adapter);
+                rv.setAdapter(adapter);
             }
 
             @Override

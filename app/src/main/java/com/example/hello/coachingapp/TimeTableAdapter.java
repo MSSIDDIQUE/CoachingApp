@@ -1,5 +1,4 @@
 package com.example.hello.coachingapp;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -26,25 +25,29 @@ import com.squareup.picasso.Picasso;
 import java.io.BufferedReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.MyViewHolder> {
 
 
+
     ArrayList <TimeData> listArray;
     private Context context;
     private DatabaseReference dbr;
+    public MainActivity.MyAdapterListener onClickListener;
 
     public TimeTableAdapter(Context context){
 
         this.context = context;
     }
 
-    public TimeTableAdapter(ArrayList List, Context context, DatabaseReference dbr){
+    public TimeTableAdapter(ArrayList List, Context context, DatabaseReference dbr, MainActivity.MyAdapterListener listener){
 
         this.listArray = List;
         this.context = context;
         this.dbr = dbr;
+        onClickListener = listener;
     }
 
     @Override
@@ -95,7 +98,8 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.MyVi
                             holder.ChangeFrom.setVisibility(View.GONE);
                         }
                     });
-                    notifyItemRangeChanged(0,getItemCount());
+                    listArray.clear();
+                    notifyDataSetChanged();
                 }
             }
         });
@@ -154,6 +158,10 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.MyVi
     @Override
     public int getItemCount() {
         return listArray.size();
+    }
+
+    public List<TimeData> getList() {
+        return this.listArray;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -251,10 +259,20 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.MyVi
             ChangeFrom = (ImageView) itemView.findViewById(R.id.ChangeFrom);
             ChangeTo = (ImageView) itemView.findViewById(R.id.ChangeTo);
             msg = (TextView) itemView.findViewById(R.id.msg);
-
             this.context=context;
             this.data=data;
+            ChangeFrom.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickListener.FromClickListner(v,getAdapterPosition());
+                }
+            });
+            ChangeTo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickListener.ToOnClickListner(v,getAdapterPosition());
+                }
+            });
         }
-
     }
 }

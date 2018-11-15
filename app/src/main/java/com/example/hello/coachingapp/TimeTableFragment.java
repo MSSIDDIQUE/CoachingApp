@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +36,7 @@ public class TimeTableFragment extends android.support.v4.app.Fragment{
     private ArrayList<TimeData> data;
     private ProgressBar mProgressCircle;
     private ProgressDialog progress;
+    private RecyclerView.LayoutManager layoutManager;
 
     public TimeTableFragment setDBR(String reference)
     {
@@ -51,7 +53,7 @@ public class TimeTableFragment extends android.support.v4.app.Fragment{
         mProgressCircle = (ProgressBar) view.findViewById(R.id.progress_bar);
         rv = (RecyclerView) view.findViewById(R.id.recyclerView1);
         rv.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(layoutManager);
         rv.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         GetDataFirebase();
@@ -73,8 +75,29 @@ public class TimeTableFragment extends android.support.v4.app.Fragment{
                         data.add(d);
                     }
                 }
-                adapter=new TimeTableAdapter(data,getActivity(),dbr);
-                adapter.notifyItemRangeChanged(0,adapter.getItemCount());
+                adapter=new TimeTableAdapter(data, getActivity(), dbr, new MainActivity.MyAdapterListener() {
+                    @Override
+                    public void FromClickListner(View v, int position) {
+                        TextView From = rv.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.From);
+                        ((MainActivity)getActivity()).onButtonClicked(From);
+                    }
+
+                    @Override
+                    public void FromClickListner(View v) {
+
+                    }
+
+                    @Override
+                    public void ToOnClickListner(View v, int position) {
+                        TextView To = rv.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.To);
+                        ((MainActivity)getActivity()).onButtonClicked(To);
+                    }
+
+                    @Override
+                    public void ToOnClickListner(View v) {
+
+                    }
+                });
                 rv.setAdapter(adapter);
                 mProgressCircle.setVisibility(view.GONE);
             }

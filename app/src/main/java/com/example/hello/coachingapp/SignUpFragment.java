@@ -288,7 +288,10 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
                                     if(dataSnapshot.getValue().toString().matches(teacherscode))
                                     {
                                         usersRef.child("Teachers").child(contactno).setValue( new Users(email,name+" Sir", password,"teacher", "",tokenId));
-                                        usersRef.child("Teachers").child(contactno).child("notifications").push().setValue(md);
+                                        //
+                                        //
+                                        //
+                                        // usersRef.child("Teachers").child(contactno).child("notifications").push().setValue(md);
                                         usersRef.child("Users").child(contactno).setValue(new Users(email,name+" Sir", password,"teacher", "",tokenId));
                                         usersRef.child("Users").child(contactno).child("notifications").push().setValue(md);
                                         SharedPreferences prefs =PreferenceManager.getDefaultSharedPreferences(getContext());

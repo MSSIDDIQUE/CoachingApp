@@ -37,6 +37,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity
     TabLayout tabLayout;
     FirebaseUser firebaseUser;
     boolean doubleBackToExitPressedOnce = false;
+    ImageView button ;
+    boolean Islogin;
 
     private int STORAGE_PERMISSION_CODE = 1;
     @Override
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        button = findViewById(R.id.ChangeFrom);
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(MainActivity.this, "You have already granted this permission!",
@@ -95,7 +100,11 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean Islogin = prefs.getBoolean("Islogin", false);
+        Islogin = prefs.getBoolean("Islogin", false);
+        if(!isConnected())
+        {
+            Toast.makeText(this,"Please Connect your phone to Network to Load data from server",Toast.LENGTH_LONG).show();
+        }
         if (Islogin) {
             setTitle(R.string.Home);
             f = new HomeFragment();
@@ -190,9 +199,17 @@ public class MainActivity extends AppCompatActivity
             prefs.edit().putBoolean("Teacher", false).commit();
         }
 
-        if (id == R.id.Profile) {
+        if ((id == R.id.Profile)&&Islogin) {
             setTitle("Profile Section");
             f = new ProfileFragment();
+            fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.screen_area, f).addToBackStack("MyBackStack").commit();
+        }
+
+        else {
+            setTitle("Profile Section");
+            f = new SorryFragment().setText("Please Sign In / Sign Up first");
             fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.screen_area, f).addToBackStack("MyBackStack").commit();
@@ -227,10 +244,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_feepayment) {
             setTitle(R.string.FeePayment);
+            f = new SorryFragment().setText("This Fragment of App is Still Under Development");
 
         } else if (id == R.id.nav_contactus) {
+            f = new SorryFragment().setText("This Fragment of App is Still Under Development");
 
         } else if (id == R.id.nav_find_us) {
+            f = new SorryFragment().setText("This Fragment of App is Still Under Development");
 
         }
 
@@ -249,15 +269,25 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public interface MyAdapterListener {
+
+        void FromClickListner(View v, int position);
+        void FromClickListner(View v);
+        void ToOnClickListner(View v, int position);
+        void ToOnClickListner(View v);
+    }
+
     public void onButtonClicked(View v) {
         String txtid = null;
         if (v.getId() == R.id.ChangeFrom) {
             txtid = "From";
+            DialogFragment newFragment = new TimePickerFragment().SetTextId(txtid,v);
+            newFragment.show(getFragmentManager(), "TimePicker");
         } else {
             txtid = "To";
+            DialogFragment newFragment = new TimePickerFragment().SetTextId(txtid,v);
+            newFragment.show(getFragmentManager(), "TimePicker");
         }
-        DialogFragment newFragment = new TimePickerFragment().SetTextId(txtid);
-        newFragment.show(getFragmentManager(), "TimePicker");
     }
 
     private void sendRegistrationToServer(String token) {

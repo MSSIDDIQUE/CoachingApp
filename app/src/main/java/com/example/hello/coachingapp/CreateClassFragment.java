@@ -41,11 +41,11 @@ public class CreateClassFragment extends android.support.v4.app.Fragment {
     public ToggleButton Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday;
     public String days;
     public ProgressBar pb;
+    public MainActivity.MyAdapterListener onClickListener;
 
     public CreateClassFragment() {
-        // Required empty public constructor
-    }
 
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,6 +76,20 @@ public class CreateClassFragment extends android.support.v4.app.Fragment {
             public void onClick(View view) {
                 days = getDays();
                 CreateClass();
+            }
+        });
+        ChangeFrom = view.findViewById(R.id.ChangeFrom);
+        ChangeFrom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).onButtonClicked(From);
+            }
+        });
+        ChangeTo = view.findViewById(R.id.ChangeTo);
+        ChangeTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).onButtonClicked(To);
             }
         });
         return view;

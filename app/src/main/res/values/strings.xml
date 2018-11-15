@@ -48,7 +48,13 @@
 
     <string-array name="Subjects">
         <item>Science</item>
+        <item>Graduation Subjects</item>
+        <item>Commerce</item>
+        <item>Humanities</item>
         <item>Social Science</item>
+        <item>Chemistry/Physics</item>
+        <item>Economics/Accountancy/Business</item>
+        <item>Maths/Science</item>
         <item>English</item>
         <item>Physics</item>
         <item>Chemistry</item>
@@ -67,7 +73,7 @@
 
     <string-array name="Branches">
         <item>Fayyaz Ganj</item>
-        <item>Idgah Road</item>
+        <item>Idgah</item>
     </string-array>
 
     <string-array name="Classes">
@@ -77,6 +83,10 @@
         <item>XIth</item>
         <item>Xth</item>
         <item>IXth</item>
+        <item>IXth-Xth</item>
+        <item>IXth-XIIth</item>
+        <item>XIth-XIIth</item>
+        <item>Ist-VIIIth</item>
         <item>VIIIth</item>
         <item>VIIth</item>
         <item>VIth</item>
