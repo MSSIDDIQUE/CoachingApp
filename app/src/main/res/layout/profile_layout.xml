@@ -32,14 +32,15 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
                 android:layout_marginTop="200dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center_vertical|center_horizontal"
                 android:orientation="vertical">
 
                 <com.alespero.expandablecardview.ExpandableCardView
@@ -60,24 +61,21 @@
                     app:startExpanded="false"
                     app:title="Profile Details" />
 
-                <com.alespero.expandablecardview.ExpandableCardView
-                    android:id="@+id/actions"
-                    style="@style/MyLightTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                <Button
+                    android:id="@+id/Actions"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:elevation="10dp"
-                    android:minWidth="60dp"
-                    android:padding="5dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
-                    app:animationDuration="300"
-                    app:expandOnClick="true"
-                    app:icon="@drawable/ic_compare_arrows_black_24dp"
-                    app:inner_view="@layout/actions_details_layout"
-                    app:startExpanded="false"
-                    app:title="Actions" />
-
+                    android:fontFamily="@font/salsa"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:padding="10dp"
+                    android:text="Teacher Actions"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textColorLink="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="20dp" />
 
             </LinearLayout>
 

@@ -4,7 +4,7 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.hello.coachingapp.HomeFragment"
+    tools:context="com.saquib.hello.coachingapp.HomeFragment"
     android:orientation="vertical">
 
     <ScrollView

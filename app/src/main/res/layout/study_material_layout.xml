@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BookBackgroundColor"
-    tools:context="com.example.hello.coachingapp.StudyMaterialFragment">
+    tools:context="com.saquib.hello.coachingapp.StudyMaterialFragment">
 
     <RelativeLayout
         android:id="@+id/relativeLayout3"

@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:478931591492:android:7cbacf5393ea2641",
         "android_client_info": {
-          "package_name": "com.example.hello.coachingapp"
+          "package_name": "com.saquib.hello.coachingapp"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "478931591492-2khmj9o9avvb4n0u8bf7p2lr4f2ce42n.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.hello.coachingapp",
+            "package_name": "com.saquib.hello.coachingapp",
             "certificate_hash": "3048a705891209be159cabdb88987f12c2f97ac7"
           }
         },
@@ -26,7 +26,7 @@
           "client_id": "478931591492-0f40is36suo79tanpn0d28m8vls4eblj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.hello.coachingapp",
+            "package_name": "com.saquib.hello.coachingapp",
             "certificate_hash": "98264809aa66350973f01e1cfe4871906e74f9f2"
           }
         },
@@ -34,7 +34,7 @@
           "client_id": "478931591492-jaiminlomp57k6p31lfp09nuq2hau9j8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.hello.coachingapp",
+            "package_name": "com.saquib.hello.coachingapp",
             "certificate_hash": "edd366514a3f421df59fb75d3f4b659189d13297"
           }
         },

@@ -9,7 +9,7 @@
     <FrameLayout
         android:id="@+id/PlaceHolder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -17,10 +17,10 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,12 +75,12 @@
                         android:id="@+id/CreateClass"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
                         android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
+                        android:layout_marginBottom="16dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -119,12 +119,12 @@
                         android:id="@+id/UpdateTimings"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
                         android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
+                        android:layout_marginBottom="16dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -166,12 +166,12 @@
                         android:id="@+id/AddTopper"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
                         android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
+                        android:layout_marginBottom="16dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -212,12 +212,12 @@
                         android:id="@+id/ChangePassword"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
                         android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
+                        android:layout_marginBottom="16dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -296,12 +296,12 @@
                         android:id="@+id/AddStudyMaterial"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
                         android:layout_margin="16dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:layout_rowWeight="1"
+                        android:layout_marginBottom="16dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
