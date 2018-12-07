@@ -14,10 +14,15 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
         android:padding="24dp"
-        app:cardBackgroundColor="#424367"
+        app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_default"
         app:cardCornerRadius="8dp"
-        app:cardElevation="24dp">
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,16 +30,14 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/Profile"
                 android:layout_width="150dp"
                 android:layout_height="170dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="5dp"
-                android:src="@drawable/user"
-                app:civ_border_color="#FFFFFF"
-                app:civ_border_width="2dp" />
+                android:elevation="20dp"
+                android:src="@drawable/user" />
 
             <TextView
                 android:id="@+id/Name"
@@ -46,7 +49,7 @@
                 android:gravity="center_vertical|center_horizontal|center"
                 android:text="Teacher"
                 android:textAlignment="center"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="15dp"
                 android:textStyle="bold"
                 app:fontFamily="@font/salsa"></TextView>
@@ -60,7 +63,7 @@
                 android:gravity="center"
                 android:text="Subjects"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@android:color/holo_blue_dark"
                 android:textSize="10dp"
                 android:textStyle="bold"
                 app:fontFamily="@font/salsa"></TextView>

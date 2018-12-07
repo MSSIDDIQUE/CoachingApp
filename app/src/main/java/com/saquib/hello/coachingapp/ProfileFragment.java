@@ -52,7 +52,6 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
     public EditText EditName;
     public TextView Email;
     public EditText EditEmail;
-    public TextView Password;
     public EditText EditPassword;
     public TextView ContactNo,GraduationTxt;
     public EditText EditContactNo;
@@ -91,13 +90,10 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
         EditContactNo = Profile.findViewById(R.id.EditContactNo);
         ContactNo = Profile.findViewById(R.id.ContactNo);
         ContactNo.setVisibility(View.VISIBLE);
-        EditPassword = Profile.findViewById(R.id.EditPassword);
-        Password = Profile.findViewById(R.id.Password);
-        Password.setVisibility(View.VISIBLE);
         PlaceHolder = view.findViewById(R.id.PlaceHolder);
         profile = view.findViewById(R.id.Profile);
         change = view.findViewById(R.id.ChangeProfile);
-        progressBar = view.findViewById(R.id.progressBar3);
+        progressBar = view.findViewById(R.id.progressBar13);
         progressBar1 = view.findViewById(R.id.progressBar4);
         UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
         if(UserType.getBoolean("Teacher",false))
@@ -133,10 +129,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
         Actions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.screen_area,new ActionsFragment().setContactNo(ContactNo.getText().toString())).addToBackStack("MyBackStack").commit();
-
+                ((MainActivity)getActivity()).replaceFragment(new ActionsFragment().setContactNo(ContactNo.getText().toString()), "Teacher Actions");
             }
         });
 
@@ -156,7 +149,6 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
                     Users usr = ds.getValue(Users.class);
                     Name.setText(usr.getName());
                     Email.setText(usr.getEmail());
-                    Password.setText(usr.getPassword());
                     ContactNo.setText(ds.getKey());
                     if(!usr.getImgurl().equals(""))
                     {
@@ -175,8 +167,8 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        progressBar1.setVisibility(View.VISIBLE);
         if (requestCode == 1 && resultCode == RESULT_OK && data.getData() != null) {
+            progressBar1.setVisibility(View.VISIBLE);
             ImageFilePath = data.getData();
             final StorageReference childRef = ImageStorageRef.child(Name.getText().toString()+ContactNo.getText().toString()+ "." + getFileExtension(ImageFilePath));
             UploadTask uploadTask = childRef.putFile(ImageFilePath);
@@ -187,8 +179,6 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
                     if (!task.isSuccessful()) {
                         throw task.getException();
                     }
-
-                    // Continue with the task to get the download URL
                     return childRef.getDownloadUrl();
                 }
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {

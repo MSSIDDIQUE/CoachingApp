@@ -50,10 +50,8 @@ public class TimeTableFragment extends android.support.v4.app.Fragment{
         //dbr.keepSynced(true);
         mProgressCircle = (ProgressBar) view.findViewById(R.id.progress_bar);
         rv = (RecyclerView) view.findViewById(R.id.recyclerView1);
-        rv.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(layoutManager);
-        rv.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         GetDataFirebase();
         return view;
     }

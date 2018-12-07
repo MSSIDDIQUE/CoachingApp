@@ -1,7 +1,15 @@
 package com.saquib.hello.coachingapp;
 
+import android.Manifest;
+import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ListViewFragment extends android.support.v4.app.Fragment {
@@ -24,6 +33,7 @@ public class ListViewFragment extends android.support.v4.app.Fragment {
 
     private View view;
     private RecyclerView rv;
+    private DownloadManager dm;
     private ListViewAdapter adapter;
     private ArrayList<StudyMaterialData> data;
     private ProgressBar pb;
@@ -64,7 +74,58 @@ public class ListViewFragment extends android.support.v4.app.Fragment {
                     StudyMaterialData sd = ds.getValue(StudyMaterialData.class);
                     data.add(sd);//loading the material type
                 }
-                adapter=new ListViewAdapter(data,getContext());
+                adapter=new ListViewAdapter(data, getContext(), new MainActivity.MyAdapterListener() {
+                    @Override
+                    public void FromClickListner(View v, int position) {
+
+                        File book = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS+"/"+data.get(position).getTitle().toString()).getAbsolutePath());
+                        if(!book.exists())
+                        {
+                            dm = (DownloadManager)getContext().getSystemService(getContext().DOWNLOAD_SERVICE);
+                            Uri bookurl = Uri.parse(data.get(position).getPdfurl());
+                            DownloadManager.Request request = new DownloadManager.Request(bookurl);
+                            if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
+                            {
+                                ActivityCompat.requestPermissions(getActivity(),
+                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        1);
+                            }
+                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,data.get(position).getTitle());
+                            dm.enqueue(request);
+                            Toast.makeText(getContext(),"Your pdf is Downloading See Notifications", Toast.LENGTH_LONG).show();
+                        }
+                        else
+                        {
+                            book = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS+"/"+data.get(position).getTitle().toString()).getAbsolutePath());
+                            if(book.exists())
+                            {
+                                Intent intent = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS);
+                                getContext().startActivity(intent);
+                            }
+                            else
+                            {
+                                Toast.makeText(getContext(),"This book is not downloaded yet, Please Download it first",Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void FromClickListner(View v) {
+
+                    }
+
+                    @Override
+                    public void ToOnClickListner(View v, int position) {
+
+                    }
+
+                    @Override
+                    public void ToOnClickListner(View v) {
+
+                    }
+                });
                 adapter.notifyDataSetChanged();
                 rv.setAdapter(adapter);
             }

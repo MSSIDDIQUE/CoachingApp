@@ -20,19 +20,16 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
         android:elevation="24dp"
         android:padding="24dp"
-        app:cardBackgroundColor="#424367"
+        app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_default"
         app:cardCornerRadius="8dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -41,15 +38,16 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_vertical|center_horizontal|center">
+            android:layout_margin="5dp"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="2"
                 android:orientation="vertical">
 
@@ -61,7 +59,7 @@
                     android:fontFamily="@font/salsa"
                     android:gravity="center_vertical|center_horizontal"
                     android:text="Create new Class"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="30dp"
                     android:textStyle="bold" />
 
@@ -69,8 +67,8 @@
                     android:id="@+id/view2"
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:layout_marginEnd="30dp"
                     android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
                     android:background="@color/colorAccent" />
 
             </LinearLayout>
@@ -79,23 +77,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/Class"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginStart="8dp"
                     android:gravity="center_vertical|center_horizontal"
                     android:text="Select Class:"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="20dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
                     android:visibility="visible"
                     app:fontFamily="@font/salsa" />
+
                 <Spinner
                     android:id="@+id/SelectClass"
-                    android:layout_width="199dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:entries="@array/Classes" />
             </LinearLayout>
 
@@ -103,23 +103,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/Subject"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginStart="8dp"
                     android:gravity="center_vertical|center_horizontal"
                     android:text="Select Subject:"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="20dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
                     android:visibility="visible"
                     app:fontFamily="@font/salsa" />
+
                 <Spinner
                     android:id="@+id/SelectSubject"
-                    android:layout_width="199dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:entries="@array/Subjects"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.516"
@@ -131,23 +133,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/Branch"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginStart="8dp"
                     android:gravity="center_vertical|center_horizontal"
                     android:text="Select Branch:"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="20dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
                     android:visibility="visible"
                     app:fontFamily="@font/salsa" />
+
                 <Spinner
                     android:id="@+id/SelectBranch"
-                    android:layout_width="199dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:entries="@array/Branches" />
             </LinearLayout>
 
@@ -158,26 +162,26 @@
 
                 <TextView
                     android:id="@+id/Teacher"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginStart="8dp"
                     android:gravity="center_vertical|center_horizontal"
                     android:text="Subject Teacher:"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="20dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize=" 15dp"
                     android:visibility="visible"
-                    app:fontFamily="@font/salsa"/>
+                    app:fontFamily="@font/salsa" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/NameOfTeacher"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@android:color/holo_red_dark">
+                    android:textColorHint="@color/colorPrimary">
 
                     <EditText
                         android:id="@+id/TeacherName"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_alignParentTop="true"
                         android:ems="10"
                         android:hint="Must be ended with Sir/Mam"
@@ -191,15 +195,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/msg"
                     android:layout_width="358dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:gravity="center_vertical|center_horizontal"
                     android:text="Please Select The Days Of Your Class"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
                     android:visibility="visible"
                     app:fontFamily="@font/salsa" />
 
@@ -207,12 +212,12 @@
                     android:id="@+id/DayPicker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@android:color/white"
                     android:clickable="true"
-                    android:padding="24dp"
-                    app:cardBackgroundColor="#424367">
+                    app:cardBackgroundColor="@android:color/darker_gray"
+                    app:cardCornerRadius="20dp">
 
                     <LinearLayout
                         android:id="@+id/daypicker_layout"
@@ -233,12 +238,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical|center"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
                     android:gravity="center_vertical|center_horizontal"
                     android:orientation="vertical">
 
@@ -248,7 +255,7 @@
                         android:layout_height="20dp"
                         android:gravity="center_vertical|center_horizontal|center"
                         android:text="Commencement Time"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorPrimary"
                         android:visibility="visible"
                         app:fontFamily="@font/salsa" />
 
@@ -266,7 +273,7 @@
                             android:inputType="time"
                             android:padding="10dp"
                             android:text="5:30 PM"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="25dp" />
 
                         <ImageView
@@ -282,6 +289,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -290,7 +298,7 @@
                         android:layout_height="20dp"
                         android:gravity="center_vertical|center"
                         android:text="Finish Time"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorPrimary"
                         android:visibility="visible"
                         app:fontFamily="@font/salsa" />
 
@@ -308,7 +316,7 @@
                             android:inputType="time"
                             android:padding="10dp"
                             android:text="6:30 PM"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="25dp" />
 
                         <ImageView
@@ -326,12 +334,13 @@
                 android:id="@+id/Create"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple"
                 android:elevation="10dp"
+                android:fontFamily="@font/salsa"
                 android:padding="10dp"
                 android:text="Create"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

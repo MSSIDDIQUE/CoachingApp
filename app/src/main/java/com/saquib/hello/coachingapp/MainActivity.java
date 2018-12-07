@@ -19,6 +19,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -47,13 +49,13 @@ public class MainActivity extends AppCompatActivity
     View HeaderView;
     VeiwPagerAdapter adapter;
     Fragment f = null;
-    FragmentManager fm;
+    FragmentManager fm = getSupportFragmentManager();
     Toolbar toolbar;
     TabLayout tabLayout;
     FirebaseUser firebaseUser;
     boolean doubleBackToExitPressedOnce = false;
     ImageView button ;
-    boolean Islogin;
+    public boolean Islogin;
 
     private int STORAGE_PERMISSION_CODE = 1;
     @Override
@@ -64,14 +66,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         button = findViewById(R.id.ChangeFrom);
-        if (ContextCompat.checkSelfPermission(MainActivity.this,
-                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(MainActivity.this, "You have already granted this permission!",
-                    Toast.LENGTH_SHORT).show();
-        }
-        else {
-            requestStoragePermission();
-        }
 
         FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
 
@@ -131,23 +125,36 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void replaceFragment(android.support.v4.app.Fragment f) {
-        FragmentManager fm = getSupportFragmentManager();
+    public void replaceFragment(android.support.v4.app.Fragment f, String title) {
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.PlaceHolder, f).setPrimaryNavigationFragment(f).addToBackStack("ChildBackStack").commit();
+        transaction.replace(R.id.screen_area, f).setPrimaryNavigationFragment(f).addToBackStack("ChildBackStack").commit();
+        setTitle(title);
     }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        int count = getFragmentManager().getBackStackEntryCount();
+        int count = fm.getBackStackEntryCount();
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if (count == 0) {
+        }else if(count==0)
+        {
+            new AlertDialog.Builder(this)
+                    .setIcon(R.mipmap.alert)
+                    .setTitle("Exit")
+                    .setMessage("Are you sure you want to close the Application?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        }else if (count != 0) {
             super.onBackPressed();
-            //additional code
-        } else {
-            getFragmentManager().popBackStack();
         }
     }
 
@@ -171,7 +178,10 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(getApplicationContext(), "You hava Successfully Signed out", Toast.LENGTH_SHORT).show();
             setTitle("Register/Login");
             f = new RegisterFragment();
-            fm = getSupportFragmentManager();
+            f.setSharedElementEnterTransition(new DetailTransition());
+            f.setEnterTransition(new Slide());
+            f.setExitTransition(new Slide());
+            f.setSharedElementReturnTransition(new DetailTransition());
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.screen_area, f).addToBackStack("MyBackStack").commit();
 
@@ -181,9 +191,20 @@ public class MainActivity extends AppCompatActivity
         }
 
         if ((id == R.id.Profile)) {
-            setTitle("Profile Section");
-            f = new ProfileFragment();
-            fm = getSupportFragmentManager();
+            if(Islogin==true)
+            {
+                setTitle("Profile Section");
+                f = new ProfileFragment();
+            }
+            else
+            {
+                setTitle("Profile Section");
+                f = new SorryFragment().setText("Please Login/Register to your account first");
+            }
+            f.setSharedElementEnterTransition(new DetailTransition());
+            f.setEnterTransition(new Explode());
+            f.setExitTransition(new Explode());
+            f.setSharedElementReturnTransition(new DetailTransition());
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.screen_area, f).addToBackStack("MyBackStack").commit();
         }
@@ -191,7 +212,6 @@ public class MainActivity extends AppCompatActivity
         else {
             setTitle("Profile Section");
             f = new SorryFragment().setText("Please Sign In / Sign Up first");
-            fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.screen_area, f).addToBackStack("MyBackStack").commit();
         }
@@ -241,7 +261,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (f != null) {
-            fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.screen_area, f).addToBackStack("MyBackStack").commit();
         }
@@ -252,6 +271,7 @@ public class MainActivity extends AppCompatActivity
 
     public interface MyAdapterListener {
 
+        // FOR THE TIME ITEM CLICKS
         void FromClickListner(View v, int position);
         void FromClickListner(View v);
         void ToOnClickListner(View v, int position);

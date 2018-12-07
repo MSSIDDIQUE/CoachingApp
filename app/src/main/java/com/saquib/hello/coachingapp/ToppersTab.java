@@ -16,6 +16,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Explode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +57,13 @@ public class ToppersTab extends android.support.v4.app.Fragment {
                 addTopper.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        AddTopperFragment f = new AddTopperFragment();
+                        f.setSharedElementEnterTransition(new DetailTransition());
+                        f.setEnterTransition(new Explode());
+                        f.setExitTransition(new Explode());
+                        f.setSharedElementReturnTransition(new DetailTransition());
                         FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
-                        fm.beginTransaction().add(R.id.screen_area, new AddTopperFragment())
+                        fm.beginTransaction().add(R.id.screen_area, f)
                                 .addToBackStack("MyBackStack").commit();
                     }
                 });

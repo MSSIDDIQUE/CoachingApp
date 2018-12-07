@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,8 +90,13 @@ public class ToppersAdapter extends RecyclerView.Adapter<ToppersAdapter.MyViewHo
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     Log.d("Hello", String.valueOf(position));
+                    ToppersDescription f = new ToppersDescription().setData(position, data, context);
+                    f.setSharedElementEnterTransition(new DetailTransition());
+                    f.setEnterTransition(new Explode());
+                    f.setExitTransition(new Explode());
+                    f.setSharedElementReturnTransition(new DetailTransition());
                     FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
-                    fm.beginTransaction().add(R.id.screen_area, new ToppersDescription().setData(position, data, context))
+                    fm.beginTransaction().add(R.id.screen_area, f)
                             .addToBackStack("MyBackStack").commit();
                 }
             });

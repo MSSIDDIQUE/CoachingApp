@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 app:tabGravity="fill"
                 app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/colorAccent"
+                app:tabSelectedTextColor="@color/ic_launcher_background"
                 app:tabTextAppearance="@style/TextAppearance.AppCompat" />
         </android.support.design.widget.AppBarLayout>
 

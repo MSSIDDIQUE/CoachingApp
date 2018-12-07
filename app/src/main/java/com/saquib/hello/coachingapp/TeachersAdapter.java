@@ -5,6 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +42,7 @@ public class TeachersAdapter extends RecyclerView.Adapter<TeachersAdapter.MyView
     public void onBindViewHolder(final TeachersAdapter.MyViewHolder holder, final int position) {
         d1 = ListArray.get(position).get(0);
         d5 = ListArray.get(position).get(4);
+        holder.img.setTransitionName("SharedImage"+position);
         holder.name.setText(d5.getName());
         holder.subjects.setText(d1.getSubjects());
         if(!d5.getImgurl().equals(""))
@@ -71,7 +75,12 @@ public class TeachersAdapter extends RecyclerView.Adapter<TeachersAdapter.MyView
                     int position = getAdapterPosition();
                     Log.d("Hello", String.valueOf(position));
                     FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
-                    fm.beginTransaction().add(R.id.screen_area, new TeacherDescription().setData(position, data.get(position), context))
+                    TeacherDescription f = new TeacherDescription().setData(position, data.get(position), context);
+                    f.setSharedElementEnterTransition(new DetailTransition());
+                    f.setEnterTransition(new Explode());
+                    f.setExitTransition(new Explode());
+                    f.setSharedElementReturnTransition(new DetailTransition());
+                    fm.beginTransaction().addSharedElement(img,"SharedImage"+position).add(R.id.screen_area,f )
                             .addToBackStack("MyBackStack").commit();
                 }
             });

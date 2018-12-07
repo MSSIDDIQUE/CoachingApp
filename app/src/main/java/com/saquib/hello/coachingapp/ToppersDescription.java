@@ -17,10 +17,10 @@ public class ToppersDescription extends android.support.v4.app.Fragment{
     ArrayList<ToppersData> listArray;
     int position;
     View view;
-    ProgressBar progressBar;
     public TextView name;
     public TextView rollno;
     public TextView stream;
+    public TextView streamtxt;
     public TextView school;
     public ImageView img;
     public ImageView result;
@@ -40,25 +40,30 @@ public class ToppersDescription extends android.support.v4.app.Fragment{
         //mapping data
         name = (TextView) view.findViewById(R.id.NameField);
         rollno = (TextView) view.findViewById(R.id.RollNoField);
-        stream = (TextView) view.findViewById(R.id.SchoolField);
+        stream = (TextView) view.findViewById(R.id.StreamField);
+        streamtxt = (TextView) view.findViewById(R.id.Stream);
         school = (TextView) view.findViewById(R.id.SchoolField);
         img = (ImageView) view.findViewById(R.id.image1);
         result = (ImageView) view.findViewById(R.id.image3);
-        progressBar = view.findViewById(R.id.progressBarData);
         LoadData();
         return view;
     }
     public void LoadData()
     {
-        progressBar.setVisibility(view.VISIBLE);
         ToppersData data = listArray.get(position);
         name.setText(data.getName());
         rollno.setText(data.getRollno());
-        stream.setText(data.getStream());
+        if(data.getStream().equals(""))
+        {
+            streamtxt.setVisibility(View.GONE);
+        }
+        else
+        {
+            stream.setText(data.getStream());
+        }
         school.setText(data.getPercentage());
         Picasso.get().load(data.getImgurl()).fit().centerCrop().into(img);
         Picasso.get().load(data.getResulturl()).fit().centerInside().into(result);
-        progressBar.setVisibility(View.GONE);
     }
 
 }

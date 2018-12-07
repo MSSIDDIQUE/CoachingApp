@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
+    android:background="@android:color/transparent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
@@ -21,11 +21,11 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/ListViewColor"
-        app:itemBackground="@drawable/nav_view_item_background"
-        app:itemTextColor="@drawable/nav_view_item_textcolor"
-        app:itemIconTint="@color/colorAccent"
         android:fitsSystemWindows="true"
         android:theme="@style/MyLightTheme"
         app:headerLayout="@layout/nav_header_main"
+        app:itemBackground="@drawable/nav_view_item_background"
+        app:itemIconTint="@color/colorAccent"
+        app:itemTextColor="@color/common_google_signin_btn_text_dark_default"
         app:menu="@menu/activity_main_drawer" />
 </android.support.v4.widget.DrawerLayout>

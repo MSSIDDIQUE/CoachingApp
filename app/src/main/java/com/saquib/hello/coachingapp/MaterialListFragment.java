@@ -51,7 +51,6 @@ public class MaterialListFragment extends android.support.v4.app.Fragment {
         rv.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(layoutManager);
-        rv.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         GetDataFirebase();
         return view;
     }

@@ -55,7 +55,6 @@ public class HomeFragment extends android.support.v4.app.Fragment {
         rv.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         rv.setLayoutManager(layoutManager);
-        rv.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL));
         pb1 = view.findViewById(R.id.progressBar6);
         pb2 = view.findViewById(R.id.pb);
         pb1.setVisibility(View.VISIBLE);
@@ -64,7 +63,6 @@ public class HomeFragment extends android.support.v4.app.Fragment {
         {
             LoadImages();
             getData();
-            RunSlider();
         }
         else
         {
@@ -105,6 +103,7 @@ public class HomeFragment extends android.support.v4.app.Fragment {
                         }
                     }
                 }
+                RunSlider();
             }
 
             @Override
@@ -148,6 +147,29 @@ public class HomeFragment extends android.support.v4.app.Fragment {
                 adapter = new TeachersAdapter(td, getActivity());
                 adapter.notifyDataSetChanged();
                 rv.setAdapter(adapter);
+                final int speedScroll = 5000;
+                final Handler handler = new Handler();
+                final Runnable runnable = new Runnable() {
+                    int count = 0;
+                    boolean flag = true;
+                    @Override
+                    public void run() {
+                        if(count < adapter.getItemCount()){
+                            if(count==adapter.getItemCount()-1){
+                                flag = false;
+                            }else if(count == 0){
+                                flag = true;
+                            }
+                            if(flag) count++;
+                            else count--;
+
+                            rv.smoothScrollToPosition(count);
+                            handler.postDelayed(this,speedScroll);
+                        }
+                    }
+                };
+
+                handler.postDelayed(runnable,speedScroll);
                 pb2.setVisibility(View.GONE);
             }
 
@@ -175,6 +197,6 @@ public class HomeFragment extends android.support.v4.app.Fragment {
             public void run() {
                 handler.post(Update);
             }
-        }, 2500, 2500);
+        }, 5000, 7500);
     }
 }

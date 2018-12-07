@@ -11,13 +11,13 @@
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_new_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:hardwareAccelerated = "true">
 
         <service
             android:name="com.saquib.hello.coachingapp.FirebaseMessagingServices"
@@ -41,7 +41,8 @@
             android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:hardwareAccelerated = "true"/>
 
         <activity android:name="com.saquib.hello.coachingapp.SplashScreen">
             <intent-filter>

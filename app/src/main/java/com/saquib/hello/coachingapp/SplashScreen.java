@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.squareup.picasso.Picasso;
+
 public class SplashScreen extends AppCompatActivity {
 
     @Override

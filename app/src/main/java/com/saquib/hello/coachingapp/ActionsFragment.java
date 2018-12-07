@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
+import android.transition.Explode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,18 +34,24 @@ public class ActionsFragment extends android.support.v4.app.Fragment {
         CreateClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.screen_area,new CreateClassFragment()).addToBackStack("MyBackStack").commit();
+                CreateClassFragment f = new CreateClassFragment();
+                f.setSharedElementEnterTransition(new DetailTransition());
+                f.setEnterTransition(new Explode());
+                f.setExitTransition(new Explode());
+                f.setSharedElementReturnTransition(new DetailTransition());
+                ((MainActivity)getActivity()).replaceFragment(f,"Create new Class");
             }
         });
         UpdateTimings = view.findViewById(R.id.UpdateTimings);
         UpdateTimings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.screen_area,new TimeTableTab()).addToBackStack("MyBackStack").commit();
+                TimeTableTab f = new TimeTableTab();
+                f.setSharedElementEnterTransition(new DetailTransition());
+                f.setEnterTransition(new Explode());
+                f.setExitTransition(new Explode());
+                f.setSharedElementReturnTransition(new DetailTransition());
+                ((MainActivity)getActivity()).replaceFragment(f,"Time Table");
             }
         });
 
@@ -52,9 +59,12 @@ public class ActionsFragment extends android.support.v4.app.Fragment {
         AddTopper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.screen_area,new AddTopperFragment()).addToBackStack("MyBackStack").commit();
+                AddTopperFragment f = new AddTopperFragment();
+                f.setSharedElementEnterTransition(new DetailTransition());
+                f.setEnterTransition(new Explode());
+                f.setExitTransition(new Explode());
+                f.setSharedElementReturnTransition(new DetailTransition());
+                ((MainActivity)getActivity()).replaceFragment(f,"Add new Topper");
             }
         });
 
@@ -62,10 +72,12 @@ public class ActionsFragment extends android.support.v4.app.Fragment {
         ChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.screen_area,new ChangePasswordFragement()).addToBackStack("MyBackStack").commit();
-
+                ChangePasswordFragement f = new ChangePasswordFragement();
+                f.setSharedElementEnterTransition(new DetailTransition());
+                f.setEnterTransition(new Explode());
+                f.setExitTransition(new Explode());
+                f.setSharedElementReturnTransition(new DetailTransition());
+                ((MainActivity)getActivity()).replaceFragment(f,"Change Password");
             }
         });
 
@@ -73,9 +85,12 @@ public class ActionsFragment extends android.support.v4.app.Fragment {
         CreateNotices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.screen_area,new AddDetailsFragement().setContactNo(ContactNo)).addToBackStack("MyBackStack").commit();
+                AddDetailsFragement f = new AddDetailsFragement().setContactNo(ContactNo);
+                f.setSharedElementEnterTransition(new DetailTransition());
+                f.setEnterTransition(new Explode());
+                f.setExitTransition(new Explode());
+                f.setSharedElementReturnTransition(new DetailTransition());
+                ((MainActivity)getActivity()).replaceFragment(f,"Add your Details");
             }
         });
 
@@ -83,10 +98,12 @@ public class ActionsFragment extends android.support.v4.app.Fragment {
         AddStudyMaterial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.support.v4.app.Fragment f = new AddStudyMaterialFragment();
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.screen_area,new AddStudyMaterialFragment()).addToBackStack("MyBackStack").commit();
+                AddStudyMaterialFragment f = new AddStudyMaterialFragment();
+                f.setSharedElementEnterTransition(new DetailTransition());
+                f.setEnterTransition(new Explode());
+                f.setExitTransition(new Explode());
+                f.setSharedElementReturnTransition(new DetailTransition());
+                ((MainActivity)getActivity()).replaceFragment(f,"Add new Material  ");
             }
         });
         return view;
