@@ -40,6 +40,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -64,7 +65,7 @@
                             android:fontFamily="@font/salsa"
                             android:text="Chemistry"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_default"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -81,6 +82,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -106,7 +108,7 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="Physics"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_default"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -125,6 +127,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -149,7 +152,7 @@
                             android:fontFamily="@font/salsa"
                             android:text="Biology"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_default"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -168,6 +171,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -192,7 +196,7 @@
                             android:fontFamily="@font/salsa"
                             android:text="Mathematics"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_default"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -208,6 +212,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -232,7 +237,7 @@
                             android:fontFamily="@font/salsa"
                             android:text="Economics"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_default"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -247,6 +252,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -271,7 +277,7 @@
                             android:fontFamily="@font/salsa"
                             android:text="Computer Science"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_pressed"
                             android:textSize="17sp"
                             android:textStyle="bold" />
 
@@ -294,6 +300,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -318,7 +325,7 @@
                             android:fontFamily="@font/salsa"
                             android:text="Accounts"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_default"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -333,6 +340,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -357,7 +365,7 @@
                             android:fontFamily="@font/salsa"
                             android:text="Business"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_default"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -372,6 +380,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -396,7 +405,7 @@
                             android:fontFamily="@font/salsa"
                             android:text="History"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_default"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -411,6 +420,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -435,7 +445,7 @@
                             android:fontFamily="@font/salsa"
                             android:text="English"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_default"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -450,6 +460,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -474,7 +485,7 @@
                             android:fontFamily="@font/salsa"
                             android:text="Geography"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_default"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -489,6 +500,7 @@
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/common_google_signin_btn_text_dark_focused"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -513,7 +525,7 @@
                             android:fontFamily="@font/salsa"
                             android:text="Political Science"
                             android:textAlignment="center"
-                            android:textColor="@color/ListViewColor"
+                            android:textColor="@color/common_google_signin_btn_text_dark_default"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 

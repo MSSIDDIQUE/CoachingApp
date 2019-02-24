@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class SignUpFragment extends android.support.v4.app.Fragment {
@@ -131,7 +132,7 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
         if(!isConnected())
         {
             android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.screen_area,new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network")).commit();
+            fm.beginTransaction().replace(R.id.screen_area,new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network",false)).commit();
             return;
         }
 
@@ -201,20 +202,37 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
-                final String tokenId = instanceIdResult.getToken().toString();
+                final String tokenId = instanceIdResult.getToken();
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference();
                     String WelcomeNote = "Hello "+name+" Study Solutions Welcomes You";
                     MessageData md = new MessageData("Welcome", WelcomeNote,"Admin");
                     @Override
                     public void onComplete(@NonNull final Task<AuthResult> task) {
+                        FirebaseMessaging.getInstance().subscribeToTopic("WelcomeNote")
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        String msg = "Topic is Subscribed Successfully";
+                                        if (!task.isSuccessful()) {
+                                            msg = "Topic Subscription Unsuccessful";
+                                        }
+                                        //Toast.makeText(, msg, Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                         if(User.isChecked())
                         {
                             usersRef.child("Users").child(contactno).setValue( new Users(email,name, password,"user","",tokenId));
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                            SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
                             prefs.edit().putBoolean("Islogin", true).apply();
-                            UserType.edit().putBoolean("Teacher",false).apply();
+                            prefs.edit().putBoolean("Teacher",false).apply();
+                            prefs.edit().putString("Email", email).apply();
+                            prefs.edit().putString("Name", name).apply();
+                            prefs.edit().putString("ContactNo", contactno).apply();
+                            prefs.edit().putString("Password", password).apply();
+                            prefs.edit().putString("ImageUrl","").apply();
+                            prefs.edit().putString("tokenId",tokenId).apply();
+
                             progressBar.setVisibility(view.GONE);
                             if(task.isSuccessful())
                             {
@@ -251,9 +269,14 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
                                         // usersRef.child("Teachers").child(contactno).child("notifications").push().setValue(md);
                                         usersRef.child("Users").child(contactno).setValue(new Users(email,name+" Sir", password,"teacher", "",tokenId));
                                         SharedPreferences prefs =PreferenceManager.getDefaultSharedPreferences(getContext());
-                                        SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
                                         prefs.edit().putBoolean("Islogin", true).apply();
-                                        UserType.edit().putBoolean("Teacher", true).apply();
+                                        prefs.edit().putBoolean("Teacher", true).apply();
+                                        prefs.edit().putString("Email", email).apply();
+                                        prefs.edit().putString("Name", name).apply();
+                                        prefs.edit().putString("ContactNo", contactno).apply();
+                                        prefs.edit().putString("Password", password).apply();
+                                        prefs.edit().putString("ImageUrl","").apply();
+                                        prefs.edit().putString("tokenId",tokenId).apply();
                                         progressBar.setVisibility(view.GONE);
                                         if(task.isSuccessful())
                                         {
@@ -295,5 +318,6 @@ public class SignUpFragment extends android.support.v4.app.Fragment {
                 });
                }
         });
+
     }
 }

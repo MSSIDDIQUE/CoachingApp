@@ -28,6 +28,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginFragment extends android.support.v4.app.Fragment {
@@ -84,7 +85,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
             if(!isConnected())
             {
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.screen_area,new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network")).commit();
+                fm.beginTransaction().replace(R.id.screen_area,new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network",false)).commit();
                 return;
             }
         }
@@ -130,32 +131,8 @@ public class LoginFragment extends android.support.v4.app.Fragment {
                     Toast.makeText(getContext(),"You have Signed in Successfully",Toast.LENGTH_SHORT).show();
                     SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(getContext());
                     prefs.edit().putBoolean("Islogin", true).apply();
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    String email = user.getEmail();
-                    final SharedPreferences UserType =  PreferenceManager.getDefaultSharedPreferences(getContext());
-                    usersRef.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
-                            {
-                                Users u = dataSnapshot1.getValue(Users.class);
-                                if(u.getType().equals("teacher"))
-                                {
-                                    UserType.edit().putBoolean("Teacher",true).apply();
-                                    Log.e("Hey","The Retrieved Value of is Teacher is "+UserType.getBoolean("Teacher",false));
-                                }
-                                else
-                                {
-                                    UserType.edit().putBoolean("Teacher",false).apply();
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                        }
-                    });
                     getActivity().setTitle(R.string.Home);
+                    getUserData();
                     ((MainActivity)getActivity()).Islogin=true;
                     FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
                     fm.beginTransaction().replace(R.id.screen_area,new HomeFragment()).commit();
@@ -166,5 +143,47 @@ public class LoginFragment extends android.support.v4.app.Fragment {
                 }
             }
         });
+    }
+
+    public void getUserData()
+    {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final DatabaseReference dbr;
+        FirebaseUser usr = FirebaseAuth.getInstance().getCurrentUser();
+        final String CurrentEmail = usr.getEmail();
+        dbr= FirebaseDatabase.getInstance().getReference().child("Users");
+        //Toast.makeText(getContext(),"The Email of current User is "+FirebaseAuth.getInstance().getCurrentUser().getEmail(),Toast.LENGTH_LONG).show();
+        dbr.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    Users u = ds.getValue(Users.class);
+                    if(u.getEmail().equals(CurrentEmail))
+                    {
+                        prefs.edit().putString("Email",u.getEmail()).apply();
+                        prefs.edit().putString("Name",u.getName()).apply();
+                        prefs.edit().putString("Password",u.getPassword()).apply();
+                        prefs.edit().putString("ContactNo",ds.getKey()).apply();
+                        prefs.edit().putString("ImageUrl",u.getImgurl()).apply();
+                        if(u.getType()=="teacher")
+                        {
+                            prefs.edit().putBoolean("Teacher",false).apply();
+                        }
+                        else
+                        {
+                            prefs.edit().putBoolean("Teacher",true).apply();
+                        }
+                        //Toast.makeText(getContext(),"The Prefrences are updated to "+prefs.getString("Name",""),Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        //Toast.makeText(getContext(),"The Current user is "+prefs.getString("Email",""),Toast.LENGTH_LONG).show();
     }
 }

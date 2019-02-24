@@ -56,7 +56,7 @@ public class ToppersFragment extends android.support.v4.app.Fragment{
         data = new ArrayList<ToppersData>();
         //dbr = FirebaseDatabase.getInstance().getReference("ToppersData");
         mProgressCircle.setVisibility(view.VISIBLE);
-        ValueEventListener valueEventListener = dbr.addValueEventListener(new ValueEventListener() {
+        dbr.orderByChild("percentage").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

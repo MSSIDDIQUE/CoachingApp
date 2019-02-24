@@ -87,13 +87,13 @@ public class TimeTableTab extends android.support.v4.app.Fragment {
                 case 0:
                     if(!isConnected())
                     {
-                        return new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network");
+                        return new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network",false);
                     }
                     return new TimeTableFragment().setDBR("Fayyaz Ganj");
                 case 1:
                     if(!isConnected())
                     {
-                        return new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network");
+                        return new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network",false);
                     }
                     return new TimeTableFragment().setDBR("Idgah");
                 default:

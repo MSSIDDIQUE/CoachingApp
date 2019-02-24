@@ -45,6 +45,7 @@ public class ToppersDescription extends android.support.v4.app.Fragment{
         school = (TextView) view.findViewById(R.id.SchoolField);
         img = (ImageView) view.findViewById(R.id.image1);
         result = (ImageView) view.findViewById(R.id.image3);
+        view.setClickable(false);
         LoadData();
         return view;
     }

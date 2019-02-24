@@ -15,9 +15,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -52,6 +56,10 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
         String s[] = d.split("/");
         d =s[s.length-1];
         holder.Title.setText(d);
+        if(!data.get(position).getCoverurl().equals(""))
+        {
+            Picasso.get().load(data.get(position).getCoverurl()).fit().centerCrop().into(holder.img);
+        }
     }
 
     @Override
@@ -62,21 +70,30 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView Title;
         public View view;
+        public ImageView img;
         public  Context context;
         public ArrayList<StudyMaterialData> data;
         public RecyclerView rv;
         public ProgressBar pb;
-        public CardView download;
+        public Button download,preview;
         public MyViewHolder(View itemView, final Context context, final ArrayList<StudyMaterialData> data) {
             super(itemView);
             this.context=context;
             this.data=data;
+            this.img = itemView.findViewById(R.id.BookImage);
             download = itemView.findViewById(R.id.Download);
+            preview = itemView.findViewById(R.id.Preview);
             Title = (TextView)itemView.findViewById(R.id.bookTitle);
             download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listener.FromClickListner(v,getAdapterPosition());
+                }
+            });
+            preview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.ToOnClickListner(v,getAdapterPosition());
                 }
             });
         }

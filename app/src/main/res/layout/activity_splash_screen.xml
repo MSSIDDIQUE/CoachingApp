@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/splash_screen_background"
+    android:background="@color/screen_bg"
+    android:orientation="horizontal"
     tools:context="com.saquib.hello.coachingapp.SplashScreen">
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="fill_vertical|center_horizontal|fill_horizontal"
         android:layout_weight="1"
-        app:srcCompat="@mipmap/splash_screen" />
+        android:foregroundGravity="center_vertical|fill_vertical|fill_horizontal"
+        app:srcCompat="@mipmap/screen" />
 </LinearLayout>

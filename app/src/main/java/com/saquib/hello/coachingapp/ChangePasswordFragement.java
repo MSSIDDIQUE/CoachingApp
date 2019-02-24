@@ -74,7 +74,7 @@ public class ChangePasswordFragement extends Fragment {
             if(!isConnected())
             {
                 android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.screen_area,new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network")).commit();
+                fm.beginTransaction().replace(R.id.screen_area,new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network",false)).commit();
                 return;
             }
         }

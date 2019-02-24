@@ -39,8 +39,8 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
 
     private View view;
     private Spinner SelectSubject, SelectClass, SelectMaterialType;
-    private Button Choose, Upload;
-    private Uri ImageFilePath;
+    private Button Choose, Upload, ChooseCover;
+    private Uri ImageFilePath,PdfFilePath;
     private EditText BookTitle;
     ProgressBar pb;
 
@@ -63,6 +63,7 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
         pb.setVisibility(View.GONE);
         Choose = view.findViewById(R.id.Choose);
         Upload = view.findViewById(R.id.Add);
+        ChooseCover = view.findViewById(R.id.ChooseCover);
         Choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +71,16 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
                 intent.setType("application/pdf");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select pdf file"), 1);
+            }
+        });
+
+        ChooseCover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Cover page Snapshot"), 2);
             }
         });
 
@@ -196,10 +207,27 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
                                 Uri downloadUri = task.getResult();
-                                StudyMaterialData sd = new StudyMaterialData(booktitle+"-"+subject+"-"+classs+"." + getFileExtension(ImageFilePath),downloadUri.toString());
+                                StudyMaterialData sd = new StudyMaterialData(booktitle+"-"+subject+"-"+classs+"." + getFileExtension(ImageFilePath),downloadUri.toString(),"" );
                                 dbr.child("StudyMaterial").child(subject).child(classs).child(type).child(booktitle).setValue(sd);
-                                Toast.makeText(getContext(), "pdf Upload Successful", Toast.LENGTH_LONG).show();
-                                pb.setVisibility(View.GONE);
+                                Toast.makeText(getContext(), "Pdf file Uploaded Successfully", Toast.LENGTH_LONG).show();
+                                final StorageReference newChildRef = ImageStorageRef.child(booktitle+"-"+subject+"-"+classs+"." + getFileExtension(PdfFilePath));
+                                UploadTask uploadTask1 = newChildRef.putFile(PdfFilePath);
+                                Task<Uri> urlTask1 = uploadTask1.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                                    @Override
+                                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                        if (!task.isSuccessful()) {
+                                            throw task.getException();
+                                        }
+                                        return newChildRef.getDownloadUrl();
+                                    }
+                                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Uri> task) {
+                                        dbr.child("StudyMaterial").child(subject).child(classs).child(type).child(booktitle).child("coverurl").setValue(task.getResult().toString());
+                                        Toast.makeText(getContext(), "Cover Image Uploaded Successfully", Toast.LENGTH_LONG).show();
+                                        pb.setVisibility(View.GONE);
+                                    }
+                                });
                             }
                         }
                     });
@@ -215,6 +243,10 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && data.getData() != null) {
             ImageFilePath = data.getData();
+        }
+
+        if (requestCode == 2 && resultCode == RESULT_OK && data.getData() != null) {
+            PdfFilePath = data.getData();
         }
     }
 

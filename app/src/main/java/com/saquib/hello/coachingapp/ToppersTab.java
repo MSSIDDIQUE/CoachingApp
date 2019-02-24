@@ -118,13 +118,13 @@ public class ToppersTab extends android.support.v4.app.Fragment {
                 case 0:
                     if(!isConnected())
                     {
-                        return new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network");
+                        return new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network",false);
                     }
                     return new ToppersFragment().setDBR("Class: Xth");
                 case 1:
                     if(!isConnected())
                     {
-                        return new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network");
+                        return new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network",false);
                     }
                     return new ToppersFragment().setDBR("Class: XIIth");
                 default:

@@ -138,29 +138,15 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
 
     public void getUserData()
     {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        CurrnetEmail = user.getEmail();
         progressBar.setVisibility(View.VISIBLE);
-        dbr.orderByChild("email").equalTo(CurrnetEmail).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds:dataSnapshot.getChildren())
-                {
-                    Users usr = ds.getValue(Users.class);
-                    Name.setText(usr.getName());
-                    Email.setText(usr.getEmail());
-                    ContactNo.setText(ds.getKey());
-                    if(!usr.getImgurl().equals(""))
-                    {
-                        Picasso.get().load(usr.getImgurl()).fit().centerCrop().into(profile);
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getContext(),"Sorry no record found for the current user",Toast.LENGTH_LONG);
-            }
-        });
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        Name.setText(prefs.getString("Name",""));
+        Email.setText(prefs.getString("Email",""));
+        ContactNo.setText(prefs.getString("ContactNo",""));
+        if(!prefs.getString("ImageUrl","").equals(""))
+        {
+            Picasso.get().load(prefs.getString("ImageUrl","")).fit().centerCrop().into(profile);
+        }
         progressBar.setVisibility(View.GONE);
     }
 
