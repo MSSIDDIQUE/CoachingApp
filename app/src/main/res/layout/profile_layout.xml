@@ -133,8 +133,9 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="98dp"
-                    android:layout_marginRight="98dp"
+                    android:layout_marginEnd="114dp"
+                    android:layout_marginRight="114dp"
+                    android:layout_marginBottom="0dp"
                     android:src="@drawable/ic_create_black_24dp" />
 
                 <ProgressBar

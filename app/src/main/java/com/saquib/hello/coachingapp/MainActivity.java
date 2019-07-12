@@ -92,18 +92,6 @@ public class MainActivity extends AppCompatActivity
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        FirebaseMessaging.getInstance().subscribeToTopic("WelcomeNote")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = "Topic is Subscribed Successfully";
-                        if (!task.isSuccessful()) {
-                            msg = "Topic Subscription Unsuccessfull";
-                        }
-                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -131,20 +119,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-        public void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            imageBitmap = (Bitmap) extras.get("data");
-        }
-    }
 
     public void replaceFragment(android.support.v4.app.Fragment f, String title) {
         FragmentTransaction transaction = fm.beginTransaction();
@@ -260,22 +234,7 @@ public class MainActivity extends AppCompatActivity
             setTitle(R.string.StudyMaterial);
             f = new StudyMaterialFragment();
 
-        } else if (id == R.id.nav_register) {
-            setTitle("Register/Login");
-            f = new RegisterFragment();
-
-        } else if (id == R.id.nav_feepayment) {
-            setTitle(R.string.FeePayment);
-            f = new FeePaymentFragment();
-
-        } else if (id == R.id.nav_contactus) {
-            f = new SorryFragment().setText("This Fragment of App is Still Under Development",false);
-
-        } else if (id == R.id.nav_find_us) {
-            f = new SorryFragment().setText("This Fragment of App is Still Under Development",false);
-
         }
-
         if(!isConnected())
         {
             f = new SorryFragment().setText("Please Make Sure that your Phone is Connected to Network",false);

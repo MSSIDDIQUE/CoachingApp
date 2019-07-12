@@ -91,7 +91,7 @@ public class AddStudyMaterialFragment extends android.support.v4.app.Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds:dataSnapshot.getChildren())
                 {
-                    Subjects.add(ds.getKey().toString());
+                    Subjects.add(ds.getKey());
                 }
                 ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
                         android.R.layout.simple_spinner_item, Subjects);

@@ -153,28 +153,24 @@ public class LoginFragment extends android.support.v4.app.Fragment {
         final String CurrentEmail = usr.getEmail();
         dbr= FirebaseDatabase.getInstance().getReference().child("Users");
         //Toast.makeText(getContext(),"The Email of current User is "+FirebaseAuth.getInstance().getCurrentUser().getEmail(),Toast.LENGTH_LONG).show();
-        dbr.addValueEventListener(new ValueEventListener() {
+        dbr.orderByChild("email").equalTo(CurrentEmail).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     Users u = ds.getValue(Users.class);
-                    if(u.getEmail().equals(CurrentEmail))
+                    prefs.edit().putString("Email",u.getEmail()).apply();
+                    prefs.edit().putString("Name",u.getName()).apply();
+                    prefs.edit().putString("Password",u.getPassword()).apply();
+                    prefs.edit().putString("ContactNo",ds.getKey()).apply();
+                    prefs.edit().putString("ImageUrl",u.getImgurl()).apply();
+                    if(u.getType().equals("teacher"))
                     {
-                        prefs.edit().putString("Email",u.getEmail()).apply();
-                        prefs.edit().putString("Name",u.getName()).apply();
-                        prefs.edit().putString("Password",u.getPassword()).apply();
-                        prefs.edit().putString("ContactNo",ds.getKey()).apply();
-                        prefs.edit().putString("ImageUrl",u.getImgurl()).apply();
-                        if(u.getType()=="teacher")
-                        {
-                            prefs.edit().putBoolean("Teacher",false).apply();
-                        }
-                        else
-                        {
-                            prefs.edit().putBoolean("Teacher",true).apply();
-                        }
-                        //Toast.makeText(getContext(),"The Prefrences are updated to "+prefs.getString("Name",""),Toast.LENGTH_LONG).show();
+                        prefs.edit().putBoolean("Teacher",true).apply();
+                    }
+                    else
+                    {
+                        prefs.edit().putBoolean("Teacher",false).apply();
                     }
                 }
             }

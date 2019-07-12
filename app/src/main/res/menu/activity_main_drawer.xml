@@ -21,22 +21,6 @@
             android:id="@+id/nav_studymaterial"
             android:icon="@mipmap/ic_book_black_24dp"
             android:title="Study Material"/>
-        <item
-            android:id="@+id/nav_register"
-            android:icon="@mipmap/ic_assignment_ind_black_24dp"
-            android:title="Register/Login"/>
-        <item
-            android:id="@+id/nav_feepayment"
-            android:icon="@mipmap/ic_payment_black_24dp"
-            android:title="Fee Payment"/>
-        <item
-            android:id="@+id/nav_contactus"
-            android:icon="@mipmap/ic_contact_mail_black_24dp"
-            android:title="Contact Us"/>
-        <item
-            android:id="@+id/nav_find_us"
-            android:icon="@mipmap/ic_place_black_24dp"
-            android:title="Find Us"/>
     </group>
 
 </menu>

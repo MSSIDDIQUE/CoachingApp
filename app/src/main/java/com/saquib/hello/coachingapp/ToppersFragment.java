@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class ToppersFragment extends android.support.v4.app.Fragment{
@@ -64,6 +65,8 @@ public class ToppersFragment extends android.support.v4.app.Fragment{
                     ToppersData d = ds.getValue(ToppersData.class);
                     data.add(d);
                 }
+                Collections.sort(data,(a,b)->(a.getPercentage()).compareTo(b.getPercentage()));
+                Collections.reverse(data);
                 adapter=new ToppersAdapter(data,getActivity());
                 adapter.notifyDataSetChanged();
                 rv.setAdapter(adapter);

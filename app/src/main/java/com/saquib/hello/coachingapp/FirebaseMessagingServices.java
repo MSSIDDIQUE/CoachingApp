@@ -22,6 +22,8 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 public class FirebaseMessagingServices extends FirebaseMessagingService{
 
     @Override
@@ -49,9 +51,8 @@ public class FirebaseMessagingServices extends FirebaseMessagingService{
         String notificationBody = "";
         String notificationTitle = "";
         if (remoteMessage.getNotification() != null) {
-            notificationBody = remoteMessage.getNotification().getTitle();
-            notificationTitle = remoteMessage.getNotification().getBody();
-            displayNotification(getApplicationContext(), notificationTitle, notificationBody);
+            Map<String,String> data = remoteMessage.getData();
+            displayNotification(getApplicationContext(),data.get("title"),data.get("body"));
         }
     }
 

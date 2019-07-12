@@ -53,7 +53,7 @@ public class ToppersTab extends android.support.v4.app.Fragment {
             SharedPreferences UserType = PreferenceManager.getDefaultSharedPreferences(getContext());
             if(UserType.getBoolean("Teacher",false))
             {
-                addTopper.setVisibility(View.VISIBLE);
+                addTopper.show();
                 addTopper.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -70,7 +70,7 @@ public class ToppersTab extends android.support.v4.app.Fragment {
             }
             else
             {
-                addTopper.setVisibility(View.GONE);
+                addTopper.hide();
             }
 
         }

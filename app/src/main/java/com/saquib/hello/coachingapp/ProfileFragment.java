@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,13 +27,8 @@ import com.alespero.expandablecardview.ExpandableCardView;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -52,20 +45,15 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
     public EditText EditName;
     public TextView Email;
     public EditText EditEmail;
-    public EditText EditPassword;
-    public TextView ContactNo,GraduationTxt;
+    public TextView ContactNo;
     public EditText EditContactNo;
     public Uri ImageFilePath;
-    public ExpandableCardView ProfileDetails;
-    public ExpandableCardView Classes;
-    public RecyclerView rv;
     public ExpandableCardView Profile;
     public Button Actions;
-    public android.support.v4.app.Fragment TimeItemFragment;
     public ScrollView sc;
     public CircleImageView profile;
     public FloatingActionButton change;
-    public String Type,CurrnetEmail;
+    public String Type;
     public ProgressBar progressBar,progressBar1;
     public FrameLayout PlaceHolder;
 
@@ -77,7 +65,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
     DatabaseReference dbr;
     SharedPreferences UserType;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.profile_layout,container,false);
         Profile = view.findViewById(R.id.profile);
@@ -114,6 +102,8 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                progressBar1.setVisibility(View.GONE);
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -138,8 +128,9 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
 
     public void getUserData()
     {
-        progressBar.setVisibility(View.VISIBLE);
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        progressBar.setVisibility(View.VISIBLE);
         Name.setText(prefs.getString("Name",""));
         Email.setText(prefs.getString("Email",""));
         ContactNo.setText(prefs.getString("ContactNo",""));
@@ -153,7 +144,8 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK && data.getData() != null) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+       if (requestCode == 1 && resultCode == RESULT_OK && data.getData() != null) {
             progressBar1.setVisibility(View.VISIBLE);
             ImageFilePath = data.getData();
             final StorageReference childRef = ImageStorageRef.child(Name.getText().toString()+ContactNo.getText().toString()+ "." + getFileExtension(ImageFilePath));
@@ -161,7 +153,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
             final String uploadId = ContactNo.getText().toString();
             Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                public Task<Uri> then(Task<UploadTask.TaskSnapshot> task) throws Exception {
                     if (!task.isSuccessful()) {
                         throw task.getException();
                     }
@@ -169,12 +161,13 @@ public class ProfileFragment extends android.support.v4.app.Fragment{
                 }
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
-                public void onComplete(@NonNull Task<Uri> task) {
+                public void onComplete(Task<Uri> task) {
                     if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
                         dbr.child(uploadId).child("imgurl").setValue(downloadUri.toString());
                         dbr = FirebaseDatabase.getInstance().getReference().child("Users");
                         dbr.child(uploadId).child("imgurl").setValue(downloadUri.toString());
+                        prefs.edit().putString("ImageeUrl",downloadUri.toString()).apply();
                         Toast.makeText(getContext(), "Image Upload Successful", Toast.LENGTH_LONG).show();
                         progressBar1.setVisibility(View.GONE);
                     }
