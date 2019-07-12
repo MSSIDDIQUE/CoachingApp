@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.dhaval2404:imagepicker-support:1.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a0469d2e0e2f58cfefafc5209b8be1f6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a0469d2e0e2f58cfefafc5209b8be1f6/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.dhaval2404/imagepicker-support/1.1/f157eaf53f71631f15f6bfe209b056ffcc9a7c31/imagepicker-support-1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
